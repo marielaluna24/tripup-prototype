@@ -1,0 +1,114 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
+  white-space: nowrap;
+  min-height: 44px;
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.base:active { transform: scale(0.97); }
+.base:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.cardPrimary {
+  height: var(--height-card-button);
+  min-height: var(--height-card-button);
+  padding: 0 16px;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font: var(--text-body);
+}
+.cardPrimary .icon { color: var(--color-highlight); }
+
+.cardSecondary {
+  height: var(--height-card-button);
+  min-height: var(--height-card-button);
+  padding: 0 16px;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  border: 1.5px solid var(--border-on-card);
+  font: var(--text-body);
+}
+.cardSecondary .icon { color: var(--color-highlight); }
+
+.darkSecondary {
+  height: var(--height-dark-button);
+  min-height: var(--height-dark-button);
+  padding: 0 16px;
+  background: var(--surface-button);
+  color: var(--text-on-dark);
+  font: var(--text-body);
+  flex: 1;
+}
+
+.darkPrimary {
+  height: var(--height-dark-button);
+  min-height: var(--height-dark-button);
+  padding: 0 16px;
+  background: #1A1A1A;
+  color: var(--text-on-dark);
+  font: 600 16px/22px var(--font);
+  flex: 1;
+}
+
+.outlineLight {
+  height: var(--height-dark-button);
+  min-height: var(--height-dark-button);
+  padding: 0 16px;
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1.5px solid rgba(251, 251, 251, 0.35);
+  font: var(--text-body);
+  flex: 1;
+}
+
+.mainCta {
+  width: 100%;
+  height: var(--height-cta);
+  min-height: var(--height-cta);
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font: var(--text-nav);
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.mainCtaDark {
+  width: 100%;
+  height: var(--height-cta);
+  min-height: var(--height-cta);
+  background: var(--surface-button);
+  color: var(--text-on-dark);
+  font: var(--text-nav);
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.textLink {
+  min-height: 44px;
+  padding: 0 2px;
+  background: none;
+  color: var(--text-on-dark);
+  text-decoration: underline;
+  font: var(--text-body-l);
+}
+
+.textLinkMuted {
+  min-height: 44px;
+  padding: 0 2px;
+  background: none;
+  color: var(--text-on-dark-muted);
+  text-decoration: underline;
+  font: var(--text-body-l);
+}
+
+.textLinkOnCard {
+  min-height: 44px;
+  padding: 0 2px;
+  background: none;
+  color: #1A1A1A;
+  text-decoration: underline;
+  font: 600 15px/20px var(--font);
+}

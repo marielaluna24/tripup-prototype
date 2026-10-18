@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px var(--screen-margin) 4px;
+  flex-shrink: 0;
+}
+.cancel {
+  font: var(--text-body-l);
+  color: var(--text-on-dark-muted);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.title {
+  font: var(--text-nav);
+  color: var(--text-on-dark);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.spacer { width: 60px; }
+.wrap { position: relative; }

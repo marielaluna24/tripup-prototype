@@ -1,0 +1,30 @@
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.chip {
+  min-height: var(--height-day-chip);
+  border-radius: 28px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-on-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.num { font-size: 18px; font-weight: 700; color: #000000; line-height: 1.1; }
+.wk { font: var(--text-label); color: var(--text-day); }
+
+.today {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.today .num, .today .wk { color: #FFFFFF; }
+
+.disabled {
+  opacity: 0.4;
+}

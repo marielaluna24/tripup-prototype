@@ -1,0 +1,34 @@
+.track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  background: var(--surface-raised);
+  border-radius: 12px;
+  padding: 4px;
+  height: var(--height-tab-row);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 9px;
+  font: var(--text-body);
+  color: var(--text-on-dark-muted);
+  min-height: 40px;
+}
+
+.tabActive {
+  background: #FFFFFF;
+  color: #1A1A1A;
+  font-weight: 600;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-highlight);
+  flex-shrink: 0;
+}

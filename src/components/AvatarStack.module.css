@@ -1,0 +1,36 @@
+.stack {
+  display: flex;
+  align-items: center;
+}
+.stack > * + * { margin-left: -8px; }
+
+.button {
+  all: unset;
+  display: flex;
+  cursor: pointer;
+  min-height: 44px;
+  align-items: center;
+  border-radius: var(--radius-pill);
+}
+
+.overflow {
+  background: var(--avatar-more-bg);
+  color: var(--avatar-more-fg);
+}
+
+.addButton {
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(251, 251, 251, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+.addButton:hover { background: rgba(255, 255, 255, 0.16); }

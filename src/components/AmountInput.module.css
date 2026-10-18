@@ -1,0 +1,57 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font: var(--text-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-on-card);
+  background: transparent;
+  color: var(--text-on-dark);
+  font: 600 14px/18px var(--font);
+  align-self: center;
+}
+
+.inputWrap {
+  position: relative;
+  border-bottom: 2px solid var(--divider-on-dark);
+  padding-bottom: 4px;
+}
+
+.input {
+  font: var(--text-amount);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-on-dark);
+  background: none;
+  border: none;
+  width: 9ch;
+  text-align: center;
+  padding: 0;
+}
+.input:focus { outline: none; }
+.input::selection { background: var(--color-primary); color: #fff; }
+
+.helper {
+  font: var(--text-caption);
+  color: var(--text-on-dark-muted);
+}

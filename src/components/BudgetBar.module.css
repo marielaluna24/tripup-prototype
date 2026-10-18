@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+
+.label {
+  font: var(--text-body-s);
+  color: var(--text-on-dark-muted);
+}
+.label strong { color: var(--text-on-dark); font-weight: 600; }
+
+.track {
+  height: var(--bar-height);
+  border-radius: var(--radius-pill);
+  background: var(--bar-track-on-dark);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--bar-fill);
+  transition: width var(--dur-slow) var(--ease-out);
+}

@@ -1,0 +1,12 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--tertiary-20);
+  color: var(--tertiary-90);
+  font: var(--text-caption);
+  font-weight: 600;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--tertiary-80); }

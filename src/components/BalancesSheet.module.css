@@ -1,0 +1,40 @@
+.sub { font: var(--text-caption); color: var(--text-on-card-muted); margin: 2px 0 14px; }
+
+.headerRow {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.2fr;
+  font: var(--text-caption);
+  color: var(--text-on-card-subtle);
+  padding: 0 4px 6px;
+  border-bottom: 1px solid var(--border-on-card);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.2fr;
+  align-items: center;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--card-muted);
+}
+
+.personCell { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.personName { font: 600 14px/19px var(--font); color: var(--text-on-card); }
+.personNote { font: var(--text-caption); color: var(--text-on-card-muted); display: block; }
+
+.tonight { font: 600 14px/19px var(--font); text-align: left; }
+.tonight.pos { color: #047857; }
+.tonight.neg { color: #B45309; }
+
+.balanceCell { text-align: right; font: 600 14px/19px var(--font); color: var(--text-on-card); }
+
+.submit {
+  width: 100%;
+  height: var(--height-cta);
+  border-radius: var(--radius-pill);
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font: var(--text-nav);
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 18px;
+}

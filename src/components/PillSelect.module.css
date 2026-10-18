@@ -1,0 +1,11 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  border-radius: var(--radius-pill);
+  background: #FFFFFF;
+  border: 1px solid var(--border-on-card);
+}
+.label { font: 600 16px/22px var(--font); color: #1A1A1A; }

@@ -1,0 +1,101 @@
+.field { margin-bottom: 16px; }
+.label {
+  display: block;
+  font: var(--text-caption);
+  color: var(--text-on-card-muted);
+  margin-bottom: 6px;
+}
+.input {
+  width: 100%;
+  height: 48px;
+  border-radius: 16px;
+  border: 1.5px solid var(--border-on-card);
+  padding: 0 14px;
+  font: var(--text-body);
+  color: var(--text-on-card);
+  background: #FFFFFF;
+}
+.input:focus { border-color: #1A1A1A; }
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 16px;
+  background: var(--card-muted);
+}
+.suggestionBody { flex: 1; min-width: 0; }
+.suggestionName { font: 600 14px/19px var(--font); color: var(--text-on-card); }
+.suggestionSub { font: var(--text-caption); color: var(--text-on-card-muted); }
+
+.legend {
+  font: 600 14px/19px var(--font);
+  color: var(--text-on-card);
+  margin-bottom: 8px;
+}
+
+.radioRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.radioOption {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-on-card);
+  font: var(--text-body-s);
+  color: var(--text-on-card);
+}
+.radioOption.active { border-color: #1A1A1A; background: var(--card-muted); font-weight: 600; }
+
+.plansLabel {
+  font: 600 13px/18px var(--font);
+  color: var(--text-on-card-muted);
+  margin: 4px 0 8px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 2px;
+}
+.checkbox {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-on-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.checkbox.checked { background: #1A1A1A; border-color: #1A1A1A; }
+.checkBody { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; text-align: left; }
+.checkTitle { font: 600 14px/19px var(--font); color: var(--text-on-card); }
+.checkSub { font: var(--text-caption); color: var(--text-on-card-muted); }
+
+.helper {
+  font: var(--text-caption);
+  color: var(--text-on-card-muted);
+  margin: 14px 0;
+}
+
+.submit {
+  width: 100%;
+  height: var(--height-cta);
+  border-radius: var(--radius-pill);
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font: var(--text-nav);
+  font-weight: 700;
+  font-size: 17px;
+}

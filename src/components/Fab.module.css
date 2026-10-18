@@ -1,0 +1,22 @@
+.fab {
+  position: absolute;
+  right: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  width: var(--size-fab);
+  height: var(--size-fab);
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-float);
+  z-index: 40;
+  transition: transform var(--dur) var(--ease-out);
+}
+.fab:active { transform: scale(0.94); }
+
+.icon {
+  transition: transform var(--dur) var(--ease-out);
+}
+.open .icon { transform: rotate(45deg); }

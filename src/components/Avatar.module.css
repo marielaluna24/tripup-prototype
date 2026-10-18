@@ -1,0 +1,40 @@
+.avatar {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--font);
+  user-select: none;
+}
+
+.size-sm { width: var(--size-avatar-small); height: var(--size-avatar-small); font-size: 10px; }
+.size-header { width: var(--size-avatar-header); height: var(--size-avatar-header); font-size: 13px; }
+.size-picker { width: var(--size-avatar-picker); height: var(--size-avatar-picker); font-size: 15px; }
+
+.bordered { box-shadow: 0 0 0 2px var(--bg); }
+.borderedLight { box-shadow: 0 0 0 2px var(--card); }
+
+.excluded {
+  background: #FFFFFF !important;
+  color: var(--border-subtle) !important;
+  border: 1.5px dashed var(--border-subtle);
+}
+
+.checkBadge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1A1A1A;
+  border: 1.5px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-sm .checkBadge { width: 13px; height: 13px; }
