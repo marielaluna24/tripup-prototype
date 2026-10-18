@@ -144,12 +144,12 @@ export function HomeScreen() {
             </div>
           ))}
         </div>
-
-        <button type="button" className={styles.newTripInline} onClick={() => navigate("/trips/new")}>
-          <Plus size={18} aria-hidden="true" />
-          New trip
-        </button>
       </div>
+
+      <button type="button" className={styles.newTripFloat} onClick={() => navigate("/trips/new")}>
+        <Plus size={18} aria-hidden="true" />
+        New trip
+      </button>
 
       {inboxOpen && <InboxSheet onClose={() => setInboxOpen(false)} />}
     </div>
