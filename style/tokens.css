@@ -1,0 +1,104 @@
+/* TripUp · "Vivid Playful Dark" design tokens
+   Measured from design/hifi (iPhone 14, 390 × 844 pt). See STYLE.md for usage. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* Brand */
+  --color-primary: #46A5F9;
+  --color-secondary: #FF5F91;
+  --color-tertiary: #8C57B3;
+  --color-highlight: #FABC05;
+  --color-neutral: #121212;
+  --color-offwhite: #FBFBFB;
+
+  /* Tonal scales (tone 0 → 100) */
+  --primary-0: #000000; --primary-10: #071C33; --primary-20: #113154; --primary-30: #1C4877;
+  --primary-40: #29609C; --primary-50: #3579C3; --primary-60: #4F93E2; --primary-70: #72AEF9;
+  --primary-80: #A5C9FA; --primary-90: #D4E3FC; --primary-95: #EAF1FE; --primary-100: #FFFFFF;
+  --secondary-0: #000000; --secondary-10: #390519; --secondary-20: #5D0E2C; --secondary-30: #831841;
+  --secondary-40: #A43058; --secondary-50: #C34970; --secondary-60: #E36289; --secondary-70: #EF8BA6;
+  --secondary-80: #F4B4C3; --secondary-90: #F9DAE0; --secondary-95: #FCEDEF; --secondary-100: #FFFFFF;
+  --tertiary-0: #000000; --tertiary-10: #29034A; --tertiary-20: #43156B; --tertiary-30: #5A3083;
+  --tertiary-40: #74499D; --tertiary-50: #8D62B8; --tertiary-60: #A97CD3; --tertiary-70: #C496EF;
+  --tertiary-80: #DBB8FA; --tertiary-90: #EFDBFC; --tertiary-95: #F8ECFE; --tertiary-100: #FFFFFF;
+  --neutral-0: #000000; --neutral-10: #1C1B1B; --neutral-20: #313030; --neutral-30: #474646;
+  --neutral-40: #5F5E5E; --neutral-50: #787776; --neutral-60: #929090; --neutral-70: #ADABAA;
+  --neutral-80: #C8C6C5; --neutral-90: #E4E2E1; --neutral-95: #F2F0EF; --neutral-100: #FFFFFF;
+
+  /* Surfaces */
+  --bg: #1A1A1A;
+  --surface-raised: #343434;
+  --surface-button: #4F4F4F;
+  --card: #FFFFFF;
+  --card-muted: #F5F5F5;
+  --info-container: #564066;
+
+  /* Text */
+  --text-on-dark: #FBFBFB;
+  --text-on-dark-muted: #A8A8A8;
+  --text-on-card: #1A1A1A;
+  --text-on-card-strong: #171717;
+  --text-on-card-muted: #737373;
+  --text-on-card-subtle: #A3A3A3;
+  --text-chip: #525252;
+  --text-day: #5C5C5C;
+
+  /* Lines */
+  --border-on-card: #D8D8D8;
+  --border-subtle: #A3A3A3;
+  --divider-on-dark: #8C8C8C;
+
+  /* Status */
+  --success-bg: #ECFDF5; --success-border: #A7F3D0; --success-dot: #10B981;
+  --success-text: #047857; --success-circle: #D1FAE5;
+
+  /* Avatars: background / initials */
+  --avatar-ari-bg: #DCEBFB; --avatar-ari-fg: #1E429F;
+  --avatar-ana-bg: #FCE7F3; --avatar-ana-fg: #9D174D;
+  --avatar-ben-bg: #EDE9FE; --avatar-ben-fg: #6D28D9;
+  --avatar-mia-bg: #FEF3C7; --avatar-mia-fg: #92400E;
+  --avatar-nic-bg: #DCEBFB; --avatar-nic-fg: #1E429F;
+  --avatar-ren-bg: #E5E7EB; --avatar-ren-fg: #374151;
+  --avatar-more-bg: #F2F2F2; --avatar-more-fg: #757575;
+
+  /* Typography */
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --text-display: 700 40px/44px var(--font);
+  --text-amount: 700 40px/44px var(--font);
+  --text-title-l: 700 24px/30px var(--font);
+  --text-title-m: 700 18px/24px var(--font);
+  --text-nav: 600 17px/22px var(--font);
+  --text-body-l: 500 17px/24px var(--font);
+  --text-body: 500 16px/22px var(--font);
+  --text-body-s: 400 15px/20px var(--font);
+  --text-label: 600 13px/18px var(--font);
+  --text-caption: 500 12px/16px var(--font);
+  --tracking-tight: -0.02em; /* 24px and up */
+
+  /* Spacing */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px;
+  --screen-margin: 20px;
+
+  /* Shape */
+  --radius-pill: 999px;
+  --radius-card: 28px;
+  --radius-sheet: 28px;
+
+  /* Sizes */
+  --size-back-button: 40px;
+  --size-fab: 56px;
+  --size-avatar-header: 32px;
+  --size-avatar-picker: 48px;
+  --size-avatar-small: 24px;
+  --height-tab-row: 48px;
+  --height-day-chip: 56px;
+  --height-info-row: 40px;
+  --height-card-button: 40px;
+  --height-dark-button: 48px;
+  --height-cta: 56px;
+  --cover-height: 220px;
+
+  /* Elevation (floating elements only) */
+  --shadow-float: 0 6px 16px rgba(0, 0, 0, 0.25);
+}

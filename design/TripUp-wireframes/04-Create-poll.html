@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>04-Create-poll · New poll</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F1F1F}a:hover{color:#000}
+</style>
+<style>body{background:#FFFFFF}</style>
+</head>
+<body>
+<div style="width: 390px; height: 1340px; box-sizing: border-box; background: #FFFFFF; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1F1F1F; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 844px; border-top: 2px dashed #8A8A8A; z-index: 20; pointer-events: none"><span style="position: absolute; right: 8px; top: -22px; font-size: 11px; font-weight: 600; color: #5C5C5C; background: #FFFFFF; padding: 1px 6px; border-radius: 6px; border: 1px solid #CFCFCF">844 · screen ends, scrolls below</span></div>
+<div style="padding: 54px 20px 0 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="02-Plan.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; text-decoration: none">Cancel</a>
+<div style="font-size: 17px; font-weight: 600">New poll</div>
+<div style="width: 52px"></div>
+</div>
+<div role="radiogroup" aria-label="Poll type" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #F0F0F0; border-radius: 12px; padding: 4px">
+<button role="radio" aria-checked="true" style="min-height: 40px; border: 1px solid #CFCFCF; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>Places</button>
+<button role="radio" aria-checked="false" style="min-height: 40px; border: none; border-radius: 9px; background: none; font-family: inherit; font-size: 14px; color: #5C5C5C; display: flex; align-items: center; justify-content: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>Simple</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="q" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C5C">Question</label>
+<input id="q" value="Where should we eat tonight?" style="min-height: 44px; border: none; border-bottom: 2px solid #1F1F1F; padding: 0; font-family: inherit; font-size: 20px; font-weight: 700; color: #1F1F1F">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C5C">Options · 3 of 5</div>
+<div style="display: flex; gap: 8px">
+<label style="flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid #1F1F1F; border-radius: 22px; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input aria-label="Search a place to add" placeholder="Search restaurant, beach, bar…" style="flex: 1; min-width: 0; border: none; outline: none; font-family: inherit; font-size: 14px; color: #1F1F1F; background: transparent; padding: 0"></label>
+<button style="min-height: 44px; padding: 0 14px; border: 1px solid #CFCFCF; border-radius: 22px; background: #F2F2F2; font-family: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; flex-shrink: 0"><svg width="15" height="15" viewBox="0 0 24 24" fill="#1F1F1F" aria-hidden="true"><path d="M10 2l1.8 5.2L17 9l-5.2 1.8L10 16l-1.8-5.2L3 9l5.2-1.8z"></path><path d="M18 13l.9 2.1L21 16l-2.1.9L18 19l-.9-2.1L15 16l2.1-.9z"></path></svg>Suggest</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; border: 1px solid #CFCFCF; border-radius: 20px; overflow: hidden">
+<div style="position: relative; height: 120px; background: #D9D9D9">
+<svg width="348" height="120" viewBox="0 0 348 120" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%"><line x1="0" y1="0" x2="348" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line><line x1="348" y1="0" x2="0" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line></svg>
+<span style="position: absolute; left: 12px; bottom: 10px; background: #FFFFFF; border-radius: 10px; padding: 2px 8px; font-size: 12px; font-weight: 700">€€</span>
+<button aria-label="Remove Taberna da Rua" style="position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; border: none; border-radius: 16px; background: #FFFFFF; padding: 0; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="padding: 12px 14px 14px 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700">Taberna da Rua</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">Portuguese tasca</span>
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">8 min walk</span>
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">Open till 23:00</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; border: 1px solid #CFCFCF; border-radius: 20px; overflow: hidden">
+<div style="position: relative; height: 120px; background: #D9D9D9">
+<svg width="348" height="120" viewBox="0 0 348 120" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%"><line x1="0" y1="0" x2="348" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line><line x1="348" y1="0" x2="0" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line></svg>
+<span style="position: absolute; left: 12px; bottom: 10px; background: #FFFFFF; border-radius: 10px; padding: 2px 8px; font-size: 12px; font-weight: 700">€€€</span>
+<button aria-label="Remove Park Rooftop" style="position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; border: none; border-radius: 16px; background: #FFFFFF; padding: 0; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="padding: 12px 14px 14px 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700">Park Rooftop</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">Rooftop bar · sunset</span>
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">15 min walk</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; border: 1px solid #CFCFCF; border-radius: 20px; overflow: hidden">
+<div style="position: relative; height: 120px; background: #D9D9D9">
+<svg width="348" height="120" viewBox="0 0 348 120" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%"><line x1="0" y1="0" x2="348" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line><line x1="348" y1="0" x2="0" y2="120" stroke="#C4C4C4" stroke-width="1.5"></line></svg>
+<span style="position: absolute; left: 12px; bottom: 10px; background: #FFFFFF; border-radius: 10px; padding: 2px 8px; font-size: 12px; font-weight: 700">€€</span>
+<button aria-label="Remove Cervejaria Ramiro" style="position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; border: none; border-radius: 16px; background: #FFFFFF; padding: 0; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="padding: 12px 14px 14px 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700">Cervejaria Ramiro</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">Seafood classic</span>
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">12 min walk</span>
+<span style="font-size: 12px; border: 1px solid #CFCFCF; border-radius: 10px; padding: 2px 8px">Open till 00:00</span>
+</div>
+</div>
+</div>
+<section id="settings" aria-label="Poll settings" style="display: flex; flex-direction: column; gap: 10px; padding-top: 10px; border-top: 1px solid #E4E4E4">
+<div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C5C">Settings</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<label for="link" style="font-size: 12px; color: #5C5C5C">Winner is linked to</label>
+<button id="link" aria-haspopup="listbox" style="min-height: 44px; padding: 0 10px; border: 1px solid #1F1F1F; border-radius: 12px; background: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px; text-align: left"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><span style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><b>Dinner · Sun 20:30</b></span><span style="color: #5C5C5C">▾</span></button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<label for="closes" style="font-size: 12px; color: #5C5C5C">Poll closes</label>
+<button id="closes" aria-haspopup="listbox" style="min-height: 44px; padding: 0 10px; border: 1px solid #1F1F1F; border-radius: 12px; background: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px; text-align: left"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span style="flex: 1"><b>Today 19:30</b></span><span style="color: #5C5C5C">▾</span></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column">
+<label style="min-height: 44px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #E4E4E4; font-size: 14px"><span style="flex: 1">Allow multiple answers</span><input type="checkbox" role="switch" aria-checked="false" style="position: absolute; opacity: 0; width: 1px; height: 1px"><span aria-hidden="true" style="width: 44px; height: 26px; border-radius: 13px; background: #CFCFCF; position: relative; flex-shrink: 0"><span style="position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span></span></label>
+<label style="min-height: 44px; display: flex; align-items: center; gap: 12px; font-size: 14px"><span style="flex: 1">Hide voter names</span><input type="checkbox" role="switch" aria-checked="false" style="position: absolute; opacity: 0; width: 1px; height: 1px"><span aria-hidden="true" style="width: 44px; height: 26px; border-radius: 13px; background: #CFCFCF; position: relative; flex-shrink: 0"><span style="position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span></span></label>
+</div>
+</section>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-top: 1px solid #DADADA; box-shadow: 0 -6px 16px rgba(0,0,0,0.08); padding: 12px 20px 30px 20px; display: flex; flex-direction: column; gap: 6px">
+<a href="05-Live-votes.html" style="min-height: 54px; border-radius: 27px; background: #1F1F1F; color: #FFFFFF; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; text-decoration: none">Create poll</a>
+<a href="#settings" style="min-height: 28px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #5C5C5C; text-decoration: none">Fills Dinner · Sun 20:30 · closes 19:30 · <span style="text-decoration: underline; color: #1F1F1F">Edit</span></a>
+</div>
+</div>
+</body>
+</html>

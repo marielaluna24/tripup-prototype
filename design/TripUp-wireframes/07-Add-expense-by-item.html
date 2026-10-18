@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>07-Add-expense-by-item · Add expense, split by item</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F1F1F}a:hover{color:#000}
+</style>
+<style>body{background:#FFFFFF}</style>
+</head>
+<body>
+<div style="width: 390px; height: 1280px; box-sizing: border-box; background: #FFFFFF; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1F1F1F; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 54px 20px 34px 20px; gap: 16px">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 844px; border-top: 2px dashed #8A8A8A; z-index: 20; pointer-events: none"><span style="position: absolute; right: 8px; top: -22px; font-size: 11px; font-weight: 600; color: #5C5C5C; background: #FFFFFF; padding: 1px 6px; border-radius: 6px; border: 1px solid #CFCFCF">844 · screen ends, scrolls below</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="S2-Expenses-before-dinner.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; text-decoration: none">Cancel</a>
+<div style="font-size: 17px; font-weight: 600">New expense</div>
+<div style="width: 52px"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button style="min-height: 48px; border: 1px solid #1F1F1F; border-radius: 24px; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="1.8" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Scan receipt</button>
+<button style="min-height: 48px; border: 1px solid #1F1F1F; border-radius: 24px; background: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M4 16l5-5 4 4 3-3 4 4"></path></svg>From photos</button>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 0">
+<label for="amt" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C5C">Amount</label>
+<div style="display: flex; align-items: baseline; gap: 8px">
+<button style="min-height: 44px; padding: 0 10px; border: 1px solid #CFCFCF; border-radius: 10px; background: #FFFFFF; font-size: 14px; font-weight: 600; font-family: inherit">EUR ▾</button>
+<input id="amt" value="195.00" style="width: 170px; font-size: 44px; font-weight: 700; border: none; border-bottom: 2px solid #1F1F1F; text-align: center; font-family: inherit; color: #1F1F1F; padding: 0">
+</div>
+<div style="font-size: 12px; color: #5C5C5C">Each person sees it in their own currency</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E4E4E4; border-bottom: 1px solid #E4E4E4">
+<div style="font-size: 14px; color: #5C5C5C">Paid by</div>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 8px; border: 1px solid #CFCFCF; border-radius: 22px; background: #FFFFFF; padding: 0 12px 0 6px; font-family: inherit; font-size: 14px; font-weight: 600"><span style="width: 32px; height: 32px; border-radius: 16px; background: #E4E4E4; font-size: 11px; display: flex; align-items: center; justify-content: center">AR</span>You (Ari) ▾</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="font-size: 14px; font-weight: 600">Who was there</div>
+<div style="display: flex; gap: 12px; font-size: 13px"><button style="background: none; border: none; padding: 0; font-family: inherit; font-size: 13px; font-weight: 600; text-decoration: underline; min-height: 44px">Select all</button><button style="background: none; border: none; padding: 0; font-family: inherit; font-size: 13px; color: #5C5C5C; text-decoration: underline; min-height: 44px">Unselect all</button></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">AR<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>You</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">AN<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>Ana</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">BE<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>Ben</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">MI<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>Mia</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">NI<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>Nic</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><div style="width: 44px; height: 44px; border-radius: 22px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; position: relative">RE<span style="position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 9px; background: #1F1F1F; color: #FFFFFF; font-size: 11px; display: flex; align-items: center; justify-content: center">✓</span></div>Ren · guest</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px"><button aria-label="Add guest" style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; border: 2px dashed #8A8A8A; box-sizing: border-box; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>Add guest</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 14px; font-weight: 600">How to split</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #F0F0F0; border-radius: 12px; padding: 4px">
+<a href="S3-Add-expense-equally.html" style="text-align: center; font-size: 13px; padding: 10px 0; color: #5C5C5C; text-decoration: none">Equally</a>
+<div style="text-align: center; font-size: 13px; padding: 10px 0; background: #FFFFFF; border-radius: 9px; font-weight: 600; border: 1px solid #CFCFCF">By item</div>
+</div>
+<div style="border: 1px solid #CFCFCF; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div style="font-size: 15px; font-weight: 600">Food &amp; mains</div><div style="font-size: 15px; font-weight: 600">€150.00</div></div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; gap: 4px">
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">AR</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">AN</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">BE</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">MI</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">NI</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">RE</div>
+</div>
+<div style="font-size: 12px; color: #5C5C5C">€25.00 each</div>
+</div>
+<div style="font-size: 12px; color: #5C5C5C">Everyone (6) · <span style="text-decoration: underline">Unselect all</span></div>
+</div>
+<div style="border: 2px solid #1F1F1F; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div style="font-size: 15px; font-weight: 600">Wine · 2 bottles</div><div style="font-size: 15px; font-weight: 600">€45.00</div></div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; gap: 4px">
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">AR</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">AN</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">BE</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #E4E4E4; border: 2px solid #1F1F1F; box-sizing: border-box; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center">MI</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #FFFFFF; border: 2px dashed #8A8A8A; box-sizing: border-box; font-size: 10px; color: #6B6B6B; display: flex; align-items: center; justify-content: center; text-decoration: line-through">NI</div>
+<div style="width: 34px; height: 34px; border-radius: 17px; background: #FFFFFF; border: 2px dashed #8A8A8A; box-sizing: border-box; font-size: 10px; color: #6B6B6B; display: flex; align-items: center; justify-content: center; text-decoration: line-through">RE</div>
+</div>
+<div style="font-size: 12px; color: #5C5C5C">€11.25 each</div>
+</div>
+<div style="font-size: 12px; color: #1F1F1F; background: #F2F2F2; border-radius: 8px; padding: 6px 10px">Nic &amp; Ren excluded · tap an avatar to change</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button style="min-height: 44px; border: 1px solid #1F1F1F; border-radius: 22px; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M4 16l5-5 4 4 3-3 4 4"></path></svg>Fill from receipt</button>
+<button style="min-height: 44px; border: 1px solid #1F1F1F; border-radius: 22px; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add item</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 4px">
+<div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #5C5C5C">Each person pays</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; row-gap: 6px; font-size: 14px">
+<div style="display: flex; justify-content: space-between"><span>You</span><b>€36.25</b></div>
+<div style="display: flex; justify-content: space-between"><span>Mia</span><b>€36.25</b></div>
+<div style="display: flex; justify-content: space-between"><span>Ana</span><b>€36.25</b></div>
+<div style="display: flex; justify-content: space-between"><span>Nic</span><b>€25.00</b></div>
+<div style="display: flex; justify-content: space-between"><span>Ben</span><b>€36.25</b></div>
+<div style="display: flex; justify-content: space-between"><span>Ren</span><b>€25.00</b></div>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 8px 10px; border: 1px solid #CFCFCF; border-radius: 10px; margin-top: 4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.2" aria-hidden="true"><path d="M5 12l4 4L19 6"></path></svg>Items add up to €195.00</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F2F2F2">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg>
+<div style="flex: 1; font-size: 13px">Linked to <b>Dinner · Taberna da Rua</b><br><span style="color: #5C5C5C">Today 20:30 · from itinerary</span></div>
+</div>
+<div style="flex: 1"></div>
+<a href="08-Expenses-updated.html" style="min-height: 54px; border-radius: 27px; background: #1F1F1F; color: #FFFFFF; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; text-decoration: none">Save expense</a>
+</div>
+</body>
+</html>
