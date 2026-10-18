@@ -1,0 +1,76 @@
+.screen { flex: 1; min-height: 0; display: flex; flex-direction: column; background: var(--bg); }
+.scroll { flex: 1; min-height: 0; padding: 8px var(--screen-margin) 16px; display: flex; flex-direction: column; gap: 18px; }
+
+.coverBtn {
+  height: 120px;
+  border-radius: 20px;
+  background: var(--surface-raised);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-on-dark);
+}
+.coverBtn b { font: 600 14px/19px var(--font); }
+.coverBtn span { font: var(--text-caption); color: var(--text-on-dark-muted); }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font: var(--text-body-s); color: var(--text-on-dark-muted); }
+.input {
+  height: 48px;
+  border-radius: 16px;
+  background: var(--surface-raised);
+  border: none;
+  padding: 0 14px;
+  font: var(--text-body);
+  color: var(--text-on-dark);
+}
+
+.datesRow { display: flex; gap: 10px; }
+.datesRow .field { flex: 1; }
+.hint { font: var(--text-caption); color: var(--text-on-dark-muted); }
+.hint a, .hint button { color: var(--text-on-dark); text-decoration: underline; background: none; border: none; font: inherit; padding: 0; }
+
+.budgetSub { font: var(--text-caption); color: var(--text-on-dark-muted); }
+
+.peopleRow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.addFriends {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  color: var(--text-on-dark);
+  font: 600 13px/18px var(--font);
+}
+
+.inviteRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface-raised);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+.inviteText { font: var(--text-body-s); color: var(--text-on-dark-muted); }
+.shareBtn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font: 600 13px/18px var(--font);
+  flex-shrink: 0;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 10px var(--screen-margin) max(16px, env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
