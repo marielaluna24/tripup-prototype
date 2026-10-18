@@ -1,0 +1,125 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 10px var(--screen-margin) 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.scanRow { display: flex; gap: 10px; }
+.scanBtn {
+  flex: 1;
+  height: 48px;
+  border-radius: 16px;
+  background: var(--surface-button);
+  color: var(--text-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: var(--text-body-s);
+  font-weight: 600;
+}
+
+.linkedRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 4px;
+}
+.linkIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.linkedBody { font: var(--text-body-s); color: var(--text-on-dark); }
+.linkedBody strong { font-weight: 700; }
+.linkedSub { font: var(--text-caption); color: var(--text-on-dark-muted); margin-top: 1px; }
+
+.divider { height: 1px; background: rgba(255, 255, 255, 0.1); }
+
+.paidByRow { display: flex; align-items: center; justify-content: space-between; }
+.rowLabel { font: var(--text-body-l); font-weight: 600; color: var(--text-on-dark); }
+
+.whoSection { display: flex; flex-direction: column; gap: 10px; }
+.whoHeader { display: flex; align-items: center; justify-content: space-between; }
+.whoLinks { display: flex; gap: 12px; }
+.whoLink { font: 600 13px/18px var(--font); text-decoration: underline; color: var(--text-on-dark); min-height: 44px; display: flex; align-items: center; }
+.whoLink.muted { color: var(--text-on-dark-muted); }
+
+.avatarsRow { display: flex; gap: 10px; flex-wrap: wrap; }
+.avatarItem { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.avatarItem button { all: unset; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.avatarName { font: var(--text-caption); color: var(--text-on-dark-muted); }
+
+.addGuestCircle {
+  width: var(--size-avatar-picker);
+  height: var(--size-avatar-picker);
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-dark);
+}
+
+.splitLabel { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
+
+.itemsList { display: flex; flex-direction: column; gap: 10px; }
+
+.itemButtons { display: flex; gap: 10px; }
+.itemBtn {
+  flex: 1;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--surface-button);
+  color: var(--text-on-dark);
+  font: var(--text-body-s);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.equalCard {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.equalLabel { font: var(--text-caption); color: var(--text-on-card-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.equalDetail { font: var(--text-body-s); color: var(--text-on-card-muted); }
+.equalEach { font: var(--text-amount); font-size: 32px; color: #1A1A1A; margin-top: 4px; }
+
+.payGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+.payRow { display: flex; align-items: center; justify-content: space-between; }
+.payName { font: var(--text-body-s); color: var(--text-on-dark-muted); }
+.payAmount { font: 700 15px/20px var(--font); color: var(--text-on-dark); }
+
+.footer {
+  flex-shrink: 0;
+  padding: 10px var(--screen-margin) max(16px, env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}

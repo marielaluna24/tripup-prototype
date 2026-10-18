@@ -1,0 +1,100 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  position: relative;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 0 var(--screen-margin) 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.tabsWrap { padding-top: 12px; }
+
+.balanceSection { display: flex; flex-direction: column; gap: 10px; }
+.sectionLabel {
+  font: var(--text-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+}
+
+.balanceValue {
+  font: var(--text-amount);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-on-dark);
+}
+.balanceValue.owed { color: var(--money-positive); }
+.balanceValue.owe { color: var(--money-negative); }
+
+.updatedNote { font: var(--text-caption); color: var(--text-on-dark-muted); }
+
+.linksRow { display: flex; flex-direction: column; gap: 6px; }
+.linkBtn {
+  align-self: flex-start;
+  font: var(--text-body-l);
+  color: var(--text-on-dark);
+  text-decoration: underline;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.settleBtn { align-self: stretch; }
+
+.budgetSection { display: flex; flex-direction: column; gap: 10px; }
+.editBudget { align-self: flex-start; font: var(--text-caption); color: var(--text-on-dark-muted); text-decoration: underline; min-height: 32px; }
+
+.daySection { display: flex; flex-direction: column; gap: 10px; }
+.dayHeader { display: flex; align-items: baseline; justify-content: space-between; }
+.dayLabel { font: var(--text-label); color: var(--text-on-dark-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.dayTotal { font: 700 15px/20px var(--font); color: var(--text-on-dark); }
+
+.expenseRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 12px 14px;
+}
+.expenseLeft { min-width: 0; }
+.expenseTitle { font: 600 15px/20px var(--font); color: #1A1A1A; }
+.expenseMeta { font: var(--text-caption); color: var(--text-on-card-muted); margin-top: 2px; }
+.expenseRight { text-align: right; flex-shrink: 0; }
+.expenseAmount { font: 700 15px/20px var(--font); color: #1A1A1A; }
+.expenseShare { font: var(--text-caption); margin-top: 2px; }
+.expenseShare.owed { color: #047857; }
+.expenseShare.owe { color: #B45309; }
+
+.newTag {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  font: 700 10px/13px var(--font);
+  letter-spacing: 0.04em;
+  padding: 3px 7px;
+  border-radius: var(--radius-pill);
+}
+
+.activityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: var(--text-caption);
+  color: var(--text-on-dark-muted);
+  padding: 2px 4px;
+}
