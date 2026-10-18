@@ -3,7 +3,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   background: var(--surface-raised);
-  border-radius: 12px;
+  border-radius: var(--radius-pill);
   padding: 4px;
   height: var(--height-tab-row);
 }
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  border-radius: 9px;
+  border-radius: var(--radius-pill);
   font: var(--text-body);
   color: var(--text-on-dark-muted);
   min-height: 40px;

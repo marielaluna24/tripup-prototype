@@ -1,12 +1,14 @@
 .card {
   display: flex;
-  gap: 12px;
+  align-items: stretch;
+  flex-shrink: 0;
   background: #FFFFFF;
   border-radius: var(--radius-card);
   padding: 16px;
   min-height: 172px;
   box-sizing: border-box;
   position: relative;
+  overflow: hidden;
 }
 
 .body {
@@ -41,10 +43,11 @@
 
 .art {
   align-self: stretch;
+  flex-shrink: 0;
   margin: -16px -16px -16px 0;
   width: 112px;
 }
-.art > div { width: 112px; height: 100%; border-radius: 0 var(--radius-card) var(--radius-card) 0; }
+.art > div { width: 112px; height: 100%; border-radius: var(--radius-card); }
 
 .newTag {
   position: absolute;
