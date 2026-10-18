@@ -1,0 +1,127 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px var(--screen-margin) 4px;
+}
+.backBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-dark);
+  flex-shrink: 0;
+}
+.title { font: var(--text-body-l); color: var(--text-on-dark-muted); }
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 6px var(--screen-margin) 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.perspectiveWrap { margin-top: 4px; }
+
+.h1 { font: var(--text-title-l); font-size: 26px; color: var(--text-on-dark); }
+.sub { font: var(--text-body-s); color: var(--text-on-dark-muted); margin-top: -8px; }
+
+.section { display: flex; flex-direction: column; gap: 10px; }
+.legend { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
+
+.payRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 12px 14px;
+  opacity: 1;
+}
+.payRow.done { opacity: 0.5; }
+.payBody { flex: 1; min-width: 0; }
+.payName { font: 700 15px/20px var(--font); color: #1A1A1A; }
+.paySub { font: var(--text-caption); color: var(--text-on-card-muted); margin-top: 1px; }
+.payAmount { font: 700 15px/20px var(--font); color: #1A1A1A; flex-shrink: 0; }
+.doneTag { font: 600 12px/16px var(--font); color: #047857; flex-shrink: 0; }
+
+.methodRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+.methodIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--card-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font: 700 12px var(--font);
+  color: #1A1A1A;
+}
+.methodBody { flex: 1; min-width: 0; display: flex; flex-direction: column; text-align: left; }
+.methodName { font: 600 14px/19px var(--font); color: #1A1A1A; }
+.methodSub { font: var(--text-caption); color: var(--text-on-card-muted); }
+.radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-on-card);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.radio.on { border-color: #1A1A1A; }
+.radioDot { width: 9px; height: 9px; border-radius: 50%; background: #1A1A1A; }
+
+.addMethodBtn {
+  align-self: flex-start;
+  font: var(--text-body-s);
+  color: var(--text-on-dark-muted);
+  text-decoration: underline;
+  min-height: 44px;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 10px var(--screen-margin) max(16px, env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footerNote { text-align: center; font: var(--text-caption); color: var(--text-on-dark-muted); }
+
+.allDone { text-align: center; padding: 40px 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.allDoneIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--success-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.allDoneTitle { font: var(--text-title-m); color: var(--text-on-dark); }
+.allDoneSub { font: var(--text-body-s); color: var(--text-on-dark-muted); }
