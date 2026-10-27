@@ -1,3 +1,4 @@
+/* Enter/exit handled by Motion (InAppBanner.tsx), not CSS. */
 .banner {
   position: absolute;
   left: 12px;
@@ -12,7 +13,6 @@
   align-items: center;
   gap: 10px;
   box-shadow: var(--shadow-float);
-  animation: slideDown var(--dur-slow) var(--ease-out);
 }
 
 .icon {
@@ -41,8 +41,3 @@
   padding: 0 4px;
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) { .banner { animation: none; } }

@@ -1,3 +1,6 @@
+/* Enter/exit and drag-to-dismiss are handled by Motion (BottomSheet.tsx),
+   not CSS — a spring can be grabbed and reversed mid-flight; a CSS
+   @keyframes animation can't. */
 .scrim {
   position: absolute;
   inset: 0;
@@ -5,7 +8,6 @@
   z-index: 60;
   display: flex;
   align-items: flex-end;
-  animation: fadeIn var(--dur) var(--ease-out);
 }
 
 .sheet {
@@ -15,17 +17,22 @@
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
   display: flex;
   flex-direction: column;
-  animation: slideUp var(--dur-slow) var(--ease-out);
   box-shadow: var(--shadow-float);
 }
 
 .handle {
+  box-sizing: content-box;
   width: 36px;
   height: 4px;
   border-radius: 2px;
   background: var(--sheet-handle);
-  margin: 10px auto 0;
+  background-clip: content-box;
+  margin: 6px auto 0;
   flex-shrink: 0;
+  /* Generous invisible hit area beyond the visible 4px bar, so it's easy to
+     grab (Apple Design §10 — ~10px of hysteresis/hit padding on targets). */
+  padding: 14px 40px;
+  touch-action: none;
 }
 
 .header {
@@ -57,12 +64,6 @@
 
 .body {
   overflow-y: auto;
+  touch-action: pan-y;
   padding: 0 var(--screen-margin) var(--screen-margin);
-}
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-@media (prefers-reduced-motion: reduce) {
-  .scrim, .sheet { animation: none; }
 }

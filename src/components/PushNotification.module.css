@@ -1,3 +1,4 @@
+/* Enter/exit handled by Motion (PushNotification.tsx), not CSS. */
 .overlay {
   position: absolute;
   inset: 0;
@@ -6,7 +7,6 @@
   display: flex;
   flex-direction: column;
   color: #FFFFFF;
-  animation: fadeIn var(--dur) var(--ease-out);
 }
 
 .perspective {
@@ -39,7 +39,6 @@
   backdrop-filter: blur(var(--overlay-blur));
   border-radius: 18px;
   padding: 12px 14px;
-  animation: slideDown var(--dur-slow) var(--ease-out);
 }
 
 .cardTop {
@@ -117,6 +116,3 @@
   font: var(--text-body);
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) { .overlay, .card { animation: none; } }

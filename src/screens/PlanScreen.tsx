@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { AddMemberSheet } from "../components/AddMemberSheet";
 import { Button } from "../components/Button";
@@ -146,17 +147,23 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
       </div>
 
       <Fab open={fabOpen} onClick={fabOpen ? closeMenu : openMenu} />
-      {fabOpen && <FabMenu onSelect={handleMenuSelect} onClose={closeMenu} />}
-      {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
-      {addMemberSheet && (
-        <AddMemberSheet
-          onClose={() => navigate("/trip/lisbon/plan")}
-          onAdded={() => {
-            dispatch({ type: "ADD_REN" });
-            navigate("/trip/lisbon/plan");
-          }}
-        />
-      )}
+      <AnimatePresence>
+        {fabOpen && <FabMenu onSelect={handleMenuSelect} onClose={closeMenu} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {addMemberSheet && (
+          <AddMemberSheet
+            onClose={() => navigate("/trip/lisbon/plan")}
+            onAdded={() => {
+              dispatch({ type: "ADD_REN" });
+              navigate("/trip/lisbon/plan");
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { BalancesSheet } from "../components/BalancesSheet";
 import { BudgetBar } from "../components/BudgetBar";
@@ -182,9 +183,15 @@ export function ExpensesScreen({ balancesSheet = false }: { balancesSheet?: bool
       </div>
 
       <Fab open={fabOpen} onClick={fabOpen ? closeMenu : openMenu} />
-      {fabOpen && <FabMenu onSelect={handleMenuSelect} onClose={closeMenu} />}
-      {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
-      {balancesSheet && <BalancesSheet onClose={() => navigate("/trip/lisbon/expenses")} />}
+      <AnimatePresence>
+        {fabOpen && <FabMenu onSelect={handleMenuSelect} onClose={closeMenu} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {balancesSheet && <BalancesSheet onClose={() => navigate("/trip/lisbon/expenses")} />}
+      </AnimatePresence>
     </div>
   );
 }

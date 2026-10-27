@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 import { useDemo } from "../state/DemoContext";
 import { InAppBanner } from "./InAppBanner";
 import { PushNotification } from "./PushNotification";
@@ -8,14 +9,14 @@ export function OverlayHost() {
   const navigate = useNavigate();
   const current = state.overlayQueue[0];
 
-  if (!current) return null;
-
   function dequeue() {
     dispatch({ type: "DEQUEUE_OVERLAY" });
   }
 
-  if (current.kind === "poll-push") {
-    return (
+  let content = null;
+
+  if (current?.kind === "poll-push") {
+    content = (
       <PushNotification
         key={current.id}
         perspectiveLabel="Nic's phone (and everyone else's)"
@@ -33,10 +34,8 @@ export function OverlayHost() {
         onContinue={dequeue}
       />
     );
-  }
-
-  if (current.kind === "poll-banner") {
-    return (
+  } else if (current?.kind === "poll-banner") {
+    content = (
       <InAppBanner
         key={current.id}
         icon="vote"
@@ -51,10 +50,8 @@ export function OverlayHost() {
         onDismiss={dequeue}
       />
     );
-  }
-
-  if (current.kind === "squared-push") {
-    return (
+  } else if (current?.kind === "squared-push") {
+    content = (
       <PushNotification
         key={current.id}
         perspectiveLabel="Every member's phone"
@@ -71,21 +68,22 @@ export function OverlayHost() {
         onContinue={dequeue}
       />
     );
+  } else if (current?.kind === "squared-banner") {
+    content = (
+      <InAppBanner
+        key={current.id}
+        icon="check"
+        title="Everyone's squared up"
+        sub="All 5 payments done · €153.75"
+        actionLabel="View"
+        onAction={() => {
+          dequeue();
+          navigate("/trip/lisbon/settle");
+        }}
+        onDismiss={dequeue}
+      />
+    );
   }
 
-  // squared-banner
-  return (
-    <InAppBanner
-      key={current.id}
-      icon="check"
-      title="Everyone's squared up"
-      sub="All 5 payments done · €153.75"
-      actionLabel="View"
-      onAction={() => {
-        dequeue();
-        navigate("/trip/lisbon/settle");
-      }}
-      onDismiss={dequeue}
-    />
-  );
+  return <AnimatePresence>{content}</AnimatePresence>;
 }

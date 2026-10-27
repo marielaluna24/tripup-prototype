@@ -1,5 +1,6 @@
 import { Bell, Music, Mountain, Plus } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { InboxSheet } from "../components/InboxSheet";
 import { TripCoverLisbon } from "../art/TripCover";
@@ -151,7 +152,9 @@ export function HomeScreen() {
         New trip
       </button>
 
-      {inboxOpen && <InboxSheet onClose={() => setInboxOpen(false)} />}
+      <AnimatePresence>
+        {inboxOpen && <InboxSheet onClose={() => setInboxOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }

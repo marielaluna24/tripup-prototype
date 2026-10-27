@@ -1,6 +1,10 @@
 import { Check, Vote } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import styles from "./InAppBanner.module.css";
+
+const DISMISS_OFFSET = -60; // px swiped up
+const DISMISS_VELOCITY = -500; // px/s flicked up
 
 export function InAppBanner({
   icon = "check",
@@ -19,6 +23,8 @@ export function InAppBanner({
   onDismiss: () => void;
   perspectiveLabel?: string;
 }) {
+  const reduceMotion = useReducedMotion();
+
   // onDismiss is a fresh closure every render (it comes from an inline
   // handler in OverlayHost), but the 4s auto-dismiss must survive unrelated
   // re-renders elsewhere in the app (e.g. scripted votes landing every ~2s
@@ -33,7 +39,21 @@ export function InAppBanner({
   }, []);
 
   return (
-    <div className={styles.banner} role="status" aria-live="polite">
+    <motion.div
+      className={styles.banner}
+      role="status"
+      aria-live="polite"
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
+      animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
+      transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+      drag={reduceMotion ? false : "y"}
+      dragConstraints={{ top: 0, bottom: 0 }}
+      dragElastic={{ top: 0.6, bottom: 0.2 }}
+      onDragEnd={(_, info) => {
+        if (info.offset.y < DISMISS_OFFSET || info.velocity.y < DISMISS_VELOCITY) onDismiss();
+      }}
+    >
       <span className={styles.icon} aria-hidden="true">
         {icon === "check" ? (
           <Check size={16} color="var(--money-positive)" aria-hidden="true" />
@@ -50,6 +70,6 @@ export function InAppBanner({
           {actionLabel}
         </button>
       )}
-    </div>
+    </motion.div>
   );
 }

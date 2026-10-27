@@ -1,4 +1,5 @@
 import { ListPlus, Receipt, Vote } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import styles from "./FabMenu.module.css";
 
 export interface FabMenuAction {
@@ -19,12 +20,35 @@ export function FabMenu({
   onSelect: (key: FabMenuAction["key"]) => void;
   onClose: () => void;
 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <>
-      <div className={styles.scrim} onClick={onClose} aria-hidden="true" />
+      <motion.div
+        className={styles.scrim}
+        onClick={onClose}
+        aria-hidden="true"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      />
       <div className={styles.menu} role="menu" aria-label="Create">
-        {ITEMS.map((item) => (
-          <div className={styles.item} key={item.key}>
+        {ITEMS.map((item, i) => (
+          <motion.div
+            className={styles.item}
+            key={item.key}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            transition={{
+              type: "spring",
+              bounce: 0,
+              duration: 0.25,
+              // Cascades up from the FAB (closest item first), reversed on the way out.
+              delay: (ITEMS.length - 1 - i) * 0.03,
+            }}
+          >
             <span className={styles.label}>{item.label}</span>
             <button
               type="button"
@@ -35,7 +59,7 @@ export function FabMenu({
             >
               {item.icon}
             </button>
-          </div>
+          </motion.div>
         ))}
       </div>
     </>

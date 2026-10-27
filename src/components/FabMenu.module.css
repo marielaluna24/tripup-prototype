@@ -1,9 +1,11 @@
+/* Enter/exit handled by Motion (FabMenu.tsx), not CSS keyframes — so the
+   menu can be dismissed and its items animate out properly instead of
+   vanishing instantly. */
 .scrim {
   position: absolute;
   inset: 0;
   background: var(--scrim);
   z-index: 35;
-  animation: fadeIn var(--dur) var(--ease-out);
 }
 
 .menu {
@@ -21,11 +23,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  animation: riseIn var(--dur) var(--ease-out) backwards;
 }
-.item:nth-child(1) { animation-delay: 60ms; }
-.item:nth-child(2) { animation-delay: 30ms; }
-.item:nth-child(3) { animation-delay: 0ms; }
 
 .label {
   background: var(--surface-raised);
@@ -52,6 +50,3 @@
   flex-shrink: 0;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) { .scrim, .item { animation: none; } }

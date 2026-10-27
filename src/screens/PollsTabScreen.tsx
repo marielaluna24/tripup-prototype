@@ -1,5 +1,6 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { PeopleSheet } from "../components/PeopleSheet";
 import { TabRow } from "../components/TabRow";
@@ -131,7 +132,9 @@ export function PollsTabScreen() {
         <Plus size={24} strokeWidth={2.5} aria-hidden="true" />
       </button>
 
-      {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
+      <AnimatePresence>
+        {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }

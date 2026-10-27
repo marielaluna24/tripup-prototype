@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import styles from "./PushNotification.module.css";
 
 export function PushNotification({
@@ -28,15 +29,32 @@ export function PushNotification({
   onSecondaryAction?: () => void;
   onContinue: () => void;
 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-label={`Lock screen · ${perspectiveLabel}`}>
+    <motion.div
+      className={styles.overlay}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Lock screen · ${perspectiveLabel}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
       <span className={styles.perspective}>{perspectiveLabel}</span>
       <div className={styles.clock}>
         <div className={styles.time}>{time}</div>
         <div className={styles.date}>{date}</div>
       </div>
       <div className={styles.notifications}>
-        <div className={styles.card} aria-live="assertive">
+        <motion.div
+          className={styles.card}
+          aria-live="assertive"
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          transition={{ type: "spring", bounce: 0, duration: 0.35, delay: 0.1 }}
+        >
           <div className={styles.cardTop}>
             <span className={styles.appIcon} aria-hidden="true">T</span>
             <span className={styles.appName}>{appName}</span>
@@ -58,7 +76,7 @@ export function PushNotification({
               )}
             </div>
           )}
-        </div>
+        </motion.div>
         {secondaryLine && (
           <div className={styles.secondary}>
             <span>{secondaryLine}</span>
@@ -70,6 +88,6 @@ export function PushNotification({
           Continue
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
