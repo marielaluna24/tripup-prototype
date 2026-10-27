@@ -16,15 +16,30 @@
 
 /* Tab row: sticky right below the header. Frosted (blurred, translucent)
    background so content scrolls up behind it, blurred, instead of vanishing
-   at a flat edge. */
+   at a flat edge. The panel lives in ::before and extends past .tabsWrap's
+   own top and bottom edges with a mask-image fade on both — a hard-edged
+   backdrop-filter box (even just at its top, where it meets the header)
+   renders as a visible seam/line in WebKit, so both ends taper to nothing;
+   the real tab row content stays on top, fully legible, via z-index. */
 .tabsWrap {
   position: sticky;
   top: var(--cover-height);
   z-index: 15;
   padding: 12px var(--screen-margin);
+}
+.tabsWrap::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  bottom: -28px;
+  z-index: -1;
   background: var(--chrome-bg);
   backdrop-filter: blur(var(--overlay-blur));
   -webkit-backdrop-filter: blur(var(--overlay-blur));
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 16px, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 16px, #000 70%, transparent);
 }
 
 /* Everything below the tab row: scrolls, passing behind .tabsWrap above. */
