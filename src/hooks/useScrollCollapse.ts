@@ -11,7 +11,15 @@ export function useScrollCollapse<T extends HTMLElement>(
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const onScroll = () => setCollapsed(el.scrollTop > threshold);
+    // Hysteresis, not a single threshold: collapsing the header hands the
+    // scroll container ~180px of extra room, which can clamp scrollTop back
+    // below `threshold` and immediately re-expand it — an infinite flicker
+    // right at the boundary. Expanding again only once scrolled essentially
+    // back to the top breaks that feedback loop.
+    const onScroll = () => {
+      if (el.scrollTop > threshold) setCollapsed(true);
+      else if (el.scrollTop <= 4) setCollapsed(false);
+    };
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => el.removeEventListener("scroll", onScroll);

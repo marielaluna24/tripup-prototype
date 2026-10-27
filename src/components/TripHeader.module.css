@@ -4,7 +4,7 @@
   z-index: 20;
   height: var(--cover-height);
   overflow: hidden;
-  transition: height var(--dur-slow) var(--ease-out);
+  transition: height var(--dur) var(--ease-out);
   flex-shrink: 0;
   background: var(--bg);
 }
@@ -12,7 +12,10 @@
 
 .full {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--cover-height);
   transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 .full.hidden { opacity: 0; transform: translateY(-12px); pointer-events: none; }
