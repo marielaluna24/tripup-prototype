@@ -111,12 +111,16 @@
 :root {
   /* Cover: CLAUDE.md and the wireframe PNG both say 240; STYLE.md says ~220. */
   --cover-height: 240px;
-  --cover-collapsed-height: 64px;
 
   /* Scrims and overlays (FAB menu, bottom sheets, lock screen) */
   --scrim: rgba(12, 12, 12, 0.6);
   --sheet-handle: #D8D8D8;
   --overlay-blur: 12px;
+
+  /* Sticky tab row / date strip: frosted glass so content scrolling behind
+     it (underneath, as it passes beneath this fixed chrome) is visible but
+     blurred, rather than vanishing behind a flat opaque edge. */
+  --chrome-bg: rgba(26, 26, 26, 0.72);
 
   /* Toasts and in-app banners — STYLE.md: "#343434 pills with #FBFBFB text
      and a primary-blue action label" */

@@ -6,7 +6,6 @@ import { TabRow } from "../components/TabRow";
 import { TripHeader } from "../components/TripHeader";
 import { PEOPLE } from "../data/people";
 import { POLL_OPTIONS, POLL_QUESTION } from "../data/plan";
-import { useScrollCollapse } from "../hooks/useScrollCollapse";
 import { useEnsureRenAdded } from "../hooks/useEnsureRenAdded";
 import { useDemo } from "../state/DemoContext";
 import {
@@ -27,7 +26,6 @@ export function PollsTabScreen() {
   const { state } = useDemo();
   const navigate = useNavigate();
   useEnsureRenAdded();
-  const { ref, collapsed } = useScrollCollapse<HTMLDivElement>();
   const [peopleOpen, setPeopleOpen] = useState(false);
 
   const peopleIds = getPeopleIds(state);
@@ -43,20 +41,19 @@ export function PollsTabScreen() {
 
   return (
     <div className={styles.screen}>
-      <div ref={ref} className={`${styles.scroll} scroll-area`}>
+      <div className={`${styles.scroll} scroll-area`}>
         <TripHeader
-          collapsed={collapsed}
           title="Lisbon"
           onBack={() => navigate("/")}
           peopleIds={peopleIds}
           onOpenPeople={() => setPeopleOpen(true)}
           onAdd={() => navigate("/trip/lisbon/add-member")}
         />
-        <div className={styles.content}>
         <div className={styles.tabsWrap}>
           <TabRow active="polls" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
         </div>
 
+        <div className={styles.content}>
         <div className={styles.section}>
           <span className={styles.sectionLabel}>Open · {openCount}</span>
 

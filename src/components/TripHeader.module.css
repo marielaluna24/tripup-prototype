@@ -1,35 +1,15 @@
 .wrapper {
-  /* A normal (sticky) child of the scroll container, not an overlay sibling
-     outside it. Making it an absolute/fixed sibling of .scroll instead would
-     take it out of .scroll's DOM subtree entirely — and wheel/touch scroll
-     input landing on it (or on any of its buttons) then has no scrollable
-     ancestor to bubble to, since .scroll would be a sibling, not an
-     ancestor: scrolling while the pointer is over the header would do
-     nothing. Being sticky inside .scroll keeps native scroll bubbling
-     working everywhere, while still never resizing .scroll's own
-     clientHeight — overflow containers size from their own box (flex:1 of
-     .screen here), not their content, so this element collapsing only
-     shrinks .scroll's scrollHeight, which is harmless. */
+  /* Sticky inside the scroll container (not an overlay sibling of it): that
+     keeps wheel/touch scroll input landing anywhere on the header reaching
+     the actual scrollable element, since it stays part of its DOM subtree. */
   position: sticky;
   top: 0;
   z-index: 20;
   flex-shrink: 0;
   height: var(--cover-height);
   overflow: hidden;
-  transition: height var(--dur) var(--ease-out);
   background: var(--bg);
 }
-.wrapper.collapsed { height: var(--cover-collapsed-height); }
-
-.full {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--cover-height);
-  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
-}
-.full.hidden { opacity: 0; transform: translateY(-12px); pointer-events: none; }
 
 .coverArt { position: absolute; inset: 0; }
 
@@ -85,37 +65,4 @@
   letter-spacing: var(--tracking-tight);
   color: var(--text-on-dark);
   min-width: 0;
-}
-
-.compact {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 var(--screen-margin);
-  background: var(--bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: opacity var(--dur) var(--ease-out);
-}
-.compact.hidden { opacity: 0; pointer-events: none; }
-
-.compactBack {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--surface-raised);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-on-dark);
-  flex-shrink: 0;
-}
-
-.compactTitle {
-  font: var(--text-nav);
-  color: var(--text-on-dark);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

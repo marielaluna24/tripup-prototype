@@ -11,7 +11,6 @@ import { TabRow } from "../components/TabRow";
 import { TripHeader } from "../components/TripHeader";
 import { DAY_TOTALS_BEFORE, EARLIER_EXPENSES, SATURDAY_ACTIVITY } from "../data/expenses";
 import { DINNER_PLACE } from "../data/plan";
-import { useScrollCollapse } from "../hooks/useScrollCollapse";
 import { useEnsureRenAdded } from "../hooks/useEnsureRenAdded";
 import { useDemo } from "../state/DemoContext";
 import {
@@ -34,7 +33,6 @@ export function ExpensesScreen({ balancesSheet = false }: { balancesSheet?: bool
   const navigate = useNavigate();
   useEnsureRenAdded();
   const [searchParams] = useSearchParams();
-  const { ref, collapsed } = useScrollCollapse<HTMLDivElement>();
   const location = useLocation();
   const [peopleOpen, setPeopleOpen] = useState(false);
   const fabOpen = searchParams.get("menu") === "open";
@@ -61,20 +59,19 @@ export function ExpensesScreen({ balancesSheet = false }: { balancesSheet?: bool
 
   return (
     <div className={styles.screen}>
-      <div ref={ref} className={`${styles.scroll} scroll-area`}>
+      <div className={`${styles.scroll} scroll-area`}>
         <TripHeader
-          collapsed={collapsed}
           title="Lisbon"
           onBack={() => navigate("/")}
           peopleIds={peopleIds}
           onOpenPeople={() => setPeopleOpen(true)}
           onAdd={() => navigate("/trip/lisbon/add-member")}
         />
-        <div className={styles.content}>
         <div className={styles.tabsWrap}>
           <TabRow active="expenses" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
         </div>
 
+        <div className={styles.content}>
         <div className={styles.balanceSection}>
           <span className={styles.sectionLabel}>Trip balance</span>
           {allSquared ? (

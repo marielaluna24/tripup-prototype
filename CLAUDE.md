@@ -91,7 +91,11 @@ in-app banner that slides down for ~4 s and is announced to screen readers.
 - **No bottom nav bar.** Hub and spoke: Home → trip. The bell on Home is an inbox for all trips;
   its badge counts only "needs you" items (3).
 - **Trip header:** large cover image (240 px) with back button, trip title and avatar stack at the
-  bottom; **collapses into a compact bar (back + title) when the user scrolls.**
+  bottom. **Fixed, not collapsing:** the header stays pinned (sticky) at a constant size — no
+  compact-bar animation. The tab row, and (on Plan) the date strip, are sticky directly below it
+  with a frosted/blurred background, so the content under them (on Plan: "earlier today" + the
+  plan cards; on Expenses/Polls: everything below the tab row) scrolls up visibly-but-blurred
+  behind this fixed chrome rather than stopping at a flat edge.
 - **Tabs inside a trip: Plan · Polls · Expenses** (no People tab). Dot on Expenses = you owe money.
   Dot on Polls = a poll waits for your vote. Tapping the avatar stack opens a People sheet;
   the + next to it adds someone.

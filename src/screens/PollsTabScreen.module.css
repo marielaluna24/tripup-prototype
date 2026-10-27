@@ -7,14 +7,6 @@
   position: relative;
 }
 
-/* .scroll holds the header and the rest of the content as real children
-   (header sticky), not as an overlay sibling. A sibling overlay sits outside
-   .scroll's DOM subtree, so wheel/touch input landing on it has no
-   scrollable ancestor to bubble to and does nothing — scrolling while the
-   pointer/finger is over the header area would just not work. Being a real
-   child keeps native scroll bubbling working everywhere, while .scroll's own
-   clientHeight (fixed by flex:1 against .screen) never changes regardless of
-   the header's size. */
 .scroll {
   flex: 1;
   min-height: 0;
@@ -22,14 +14,26 @@
   flex-direction: column;
 }
 
+/* Tab row: sticky right below the header. Frosted (blurred, translucent)
+   background so content scrolls up behind it, blurred, instead of vanishing
+   at a flat edge. */
+.tabsWrap {
+  position: sticky;
+  top: var(--cover-height);
+  z-index: 15;
+  padding: 12px var(--screen-margin);
+  background: var(--chrome-bg);
+  backdrop-filter: blur(var(--overlay-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-blur));
+}
+
+/* Everything below the tab row: scrolls, passing behind .tabsWrap above. */
 .content {
   padding: 0 var(--screen-margin) 110px;
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
-
-.tabsWrap { padding-top: 12px; }
 
 .section { display: flex; flex-direction: column; gap: 10px; }
 .sectionLabel {

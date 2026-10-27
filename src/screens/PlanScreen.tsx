@@ -13,7 +13,6 @@ import { TabRow } from "../components/TabRow";
 import { TripHeader } from "../components/TripHeader";
 import { EARLIER_TODAY, FREE_TIME, POLL_CLOSES_LABEL } from "../data/plan";
 import { TRIP_DAYS } from "../data/trip";
-import { useScrollCollapse } from "../hooks/useScrollCollapse";
 import { useDemo } from "../state/DemoContext";
 import {
   getDinnerCardActions,
@@ -26,21 +25,12 @@ import {
 } from "../state/selectors";
 import styles from "./PlanScreen.module.css";
 
-// Must match --cover-height / --cover-collapsed-height in tokens.css: this is
-// where .topFixed's sticky `top` sits so it meets the header's current
-// bottom edge with no gap or overlap.
-const COVER_HEIGHT = 240;
-const COVER_COLLAPSED_HEIGHT = 64;
-
 export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolean }) {
   const { state, dispatch } = useDemo();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { ref, collapsed } = useScrollCollapse<HTMLDivElement>();
   const [peopleOpen, setPeopleOpen] = useState(false);
   const [earlierExpanded, setEarlierExpanded] = useState(false);
-
-  const headerHeight = collapsed ? COVER_COLLAPSED_HEIGHT : COVER_HEIGHT;
 
   const peopleIds = getPeopleIds(state);
   const cardStatus = getDinnerCardStatus(state);
@@ -92,19 +82,23 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
 
   return (
     <div className={styles.screen}>
-      <div ref={ref} className={`${styles.scroll} scroll-area`}>
+      <div className={`${styles.scroll} scroll-area`}>
         <TripHeader
-          collapsed={collapsed}
           title="Lisbon"
           onBack={() => navigate("/")}
           peopleIds={peopleIds}
           onOpenPeople={() => setPeopleOpen(true)}
           onAdd={() => navigate("/trip/lisbon/add-member")}
         />
-
-        <div className={styles.topFixed} style={{ top: headerHeight }}>
+        {/* Sticky right below the header: content (earlier today + cards)
+            scrolls up behind this, blurred through its frosted background,
+            rather than stopping at a hard edge. */}
+        <div className={styles.chrome}>
           <TabRow active="plan" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
           <DayStrip days={TRIP_DAYS} selectedKey="sun" />
+        </div>
+
+        <div className={styles.content}>
           <InfoRow
             as="button"
             text={`Earlier today · Pastéis de Belém, Alfama walk`}
@@ -125,9 +119,7 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
               ))}
             </div>
           )}
-        </div>
 
-        <div className={styles.cards}>
           <PlanCard badge="ongoing" title={FREE_TIME.title} timeLabel={FREE_TIME.timeLabel} art="house" />
 
           <PlanCard
