@@ -14,16 +14,15 @@
   flex-direction: column;
 }
 
-/* Tab row + date strip: sticky right below the header. Frosted (blurred,
-   translucent) background so "earlier today" and the cards are visible but
-   blurred as they scroll up behind it, instead of vanishing at a flat edge.
-   The frosted panel lives in ::before, not on .chrome itself, and extends
-   past .chrome's own top and bottom edges with a mask-image fade on both —
-   a hard-edged backdrop-filter box (even just at its top, where it meets
-   the header) renders as a visible seam/line in WebKit, so both ends taper
-   to nothing rather than cutting off sharply. ::before sits behind the real
-   tab/date content (z-index -1 inside .chrome's own stacking context),
-   which stays fully legible throughout. */
+/* Tab row + date strip: sticky right below the header. Translucent tinted
+   background, fading in/out at top and bottom, so "earlier today" and the
+   cards ease behind it instead of vanishing at a flat edge. Plain gradient,
+   no backdrop-filter: blur() on a sticky element is a known Mobile Safari
+   freeze trigger (confirmed — scrolling locked up on Expenses/Polls, which
+   had this same setup with more content to scroll through), so this trades
+   a true blur for a safe, cheap alpha fade instead. ::before sits behind
+   the real tab/date content (z-index -1 inside .chrome's own stacking
+   context), which stays fully legible throughout. */
 .chrome {
   position: sticky;
   top: var(--cover-height);
@@ -41,11 +40,14 @@
   right: 0;
   bottom: -28px;
   z-index: -1;
-  background: var(--chrome-bg);
-  backdrop-filter: blur(var(--overlay-blur));
-  -webkit-backdrop-filter: blur(var(--overlay-blur));
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 16px, #000 70%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 16px, #000 70%, transparent);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--chrome-bg) 16px,
+    var(--chrome-bg) calc(100% - 28px),
+    transparent
+  );
 }
 
 /* "Earlier today" and the plan cards: scrolls, passing behind .chrome above. */
