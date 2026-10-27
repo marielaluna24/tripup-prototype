@@ -7,9 +7,22 @@
   position: relative;
 }
 
+/* .scroll holds the header and the rest of the content as real children
+   (header sticky), not as an overlay sibling. A sibling overlay sits outside
+   .scroll's DOM subtree, so wheel/touch input landing on it has no
+   scrollable ancestor to bubble to and does nothing — scrolling while the
+   pointer/finger is over the header area would just not work. Being a real
+   child keeps native scroll bubbling working everywhere, while .scroll's own
+   clientHeight (fixed by flex:1 against .screen) never changes regardless of
+   the header's size. */
 .scroll {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
   padding: 0 var(--screen-margin) 110px;
   display: flex;
   flex-direction: column;

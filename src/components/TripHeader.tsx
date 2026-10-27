@@ -35,7 +35,7 @@ export function TripHeader({
         </button>
         {showChangeImage && (
           <button type="button" className={styles.changeImage}>
-            <Image size={15} aria-hidden="true" />
+            <Image size={13} aria-hidden="true" />
             Change Image
           </button>
         )}

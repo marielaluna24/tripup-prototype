@@ -26,6 +26,12 @@ import {
 } from "../state/selectors";
 import styles from "./PlanScreen.module.css";
 
+// Must match --cover-height / --cover-collapsed-height in tokens.css: this is
+// where .topFixed's sticky `top` sits so it meets the header's current
+// bottom edge with no gap or overlap.
+const COVER_HEIGHT = 240;
+const COVER_COLLAPSED_HEIGHT = 64;
+
 export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolean }) {
   const { state, dispatch } = useDemo();
   const navigate = useNavigate();
@@ -33,6 +39,8 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
   const { ref, collapsed } = useScrollCollapse<HTMLDivElement>();
   const [peopleOpen, setPeopleOpen] = useState(false);
   const [earlierExpanded, setEarlierExpanded] = useState(false);
+
+  const headerHeight = collapsed ? COVER_COLLAPSED_HEIGHT : COVER_HEIGHT;
 
   const peopleIds = getPeopleIds(state);
   const cardStatus = getDinnerCardStatus(state);
@@ -84,62 +92,65 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
 
   return (
     <div className={styles.screen}>
-      <TripHeader
-        collapsed={collapsed}
-        title="Lisbon"
-        onBack={() => navigate("/")}
-        peopleIds={peopleIds}
-        onOpenPeople={() => setPeopleOpen(true)}
-        onAdd={() => navigate("/trip/lisbon/add-member")}
-      />
       <div ref={ref} className={`${styles.scroll} scroll-area`}>
-        <div className={styles.tabsWrap}>
+        <TripHeader
+          collapsed={collapsed}
+          title="Lisbon"
+          onBack={() => navigate("/")}
+          peopleIds={peopleIds}
+          onOpenPeople={() => setPeopleOpen(true)}
+          onAdd={() => navigate("/trip/lisbon/add-member")}
+        />
+
+        <div className={styles.topFixed} style={{ top: headerHeight }}>
           <TabRow active="plan" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
-        </div>
-        <DayStrip days={TRIP_DAYS} selectedKey="sun" />
-        <InfoRow
-          as="button"
-          text={`Earlier today · Pastéis de Belém, Alfama walk`}
-          trailing={
-            <>
-              2 done <ChevronDown size={14} style={{ transform: earlierExpanded ? "rotate(180deg)" : undefined }} aria-hidden="true" />
-            </>
-          }
-          onClick={() => setEarlierExpanded((v) => !v)}
-        />
-        {earlierExpanded && (
-          <div className={styles.earlierList}>
-            {EARLIER_TODAY.map((item) => (
-              <div className={styles.earlierItem} key={item.id}>
-                <span>{item.title}</span>
-                <span>{item.timeLabel}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <PlanCard badge="ongoing" title={FREE_TIME.title} timeLabel={FREE_TIME.timeLabel} art="house" />
-
-        <PlanCard
-          badge={dinnerBadge}
-          title={dinnerTitle}
-          timeLabel={dinnerTime}
-          art="restaurant"
-          isNew={false}
-          actions={
-            <>
-              {cardActions.map((a) => (
-                <Button
-                  key={a.kind}
-                  variant={a.variant === "primary" ? "card-primary" : "card-secondary"}
-                  onClick={() => handleCardAction(a.kind)}
-                >
-                  {a.label}
-                </Button>
+          <DayStrip days={TRIP_DAYS} selectedKey="sun" />
+          <InfoRow
+            as="button"
+            text={`Earlier today · Pastéis de Belém, Alfama walk`}
+            trailing={
+              <>
+                2 done <ChevronDown size={14} style={{ transform: earlierExpanded ? "rotate(180deg)" : undefined }} aria-hidden="true" />
+              </>
+            }
+            onClick={() => setEarlierExpanded((v) => !v)}
+          />
+          {earlierExpanded && (
+            <div className={styles.earlierList}>
+              {EARLIER_TODAY.map((item) => (
+                <div className={styles.earlierItem} key={item.id}>
+                  <span>{item.title}</span>
+                  <span>{item.timeLabel}</span>
+                </div>
               ))}
-            </>
-          }
-        />
+            </div>
+          )}
+        </div>
+
+        <div className={styles.cards}>
+          <PlanCard badge="ongoing" title={FREE_TIME.title} timeLabel={FREE_TIME.timeLabel} art="house" />
+
+          <PlanCard
+            badge={dinnerBadge}
+            title={dinnerTitle}
+            timeLabel={dinnerTime}
+            art="restaurant"
+            isNew={false}
+            actions={
+              <>
+                {cardActions.map((a) => (
+                  <Button
+                    key={a.kind}
+                    variant={a.variant === "primary" ? "card-primary" : "card-secondary"}
+                    onClick={() => handleCardAction(a.kind)}
+                  >
+                    {a.label}
+                  </Button>
+                ))}
+              </>
+            }
+          />
+        </div>
       </div>
 
       <Fab open={fabOpen} onClick={fabOpen ? closeMenu : openMenu} />

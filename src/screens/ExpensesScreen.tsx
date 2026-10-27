@@ -61,15 +61,16 @@ export function ExpensesScreen({ balancesSheet = false }: { balancesSheet?: bool
 
   return (
     <div className={styles.screen}>
-      <TripHeader
-        collapsed={collapsed}
-        title="Lisbon"
-        onBack={() => navigate("/")}
-        peopleIds={peopleIds}
-        onOpenPeople={() => setPeopleOpen(true)}
-        onAdd={() => navigate("/trip/lisbon/add-member")}
-      />
       <div ref={ref} className={`${styles.scroll} scroll-area`}>
+        <TripHeader
+          collapsed={collapsed}
+          title="Lisbon"
+          onBack={() => navigate("/")}
+          peopleIds={peopleIds}
+          onOpenPeople={() => setPeopleOpen(true)}
+          onAdd={() => navigate("/trip/lisbon/add-member")}
+        />
+        <div className={styles.content}>
         <div className={styles.tabsWrap}>
           <TabRow active="expenses" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
         </div>
@@ -179,6 +180,7 @@ export function ExpensesScreen({ balancesSheet = false }: { balancesSheet?: bool
             <span>{SATURDAY_ACTIVITY.label}</span>
             <span>{SATURDAY_ACTIVITY.sub}</span>
           </div>
+        </div>
         </div>
       </div>
 

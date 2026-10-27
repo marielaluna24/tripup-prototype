@@ -7,16 +7,48 @@
   position: relative;
 }
 
+/* .scroll holds the header, the fixed chrome below it, and the cards — all
+   as real children, not overlay siblings. A sibling overlay would sit
+   outside .scroll's DOM subtree, so wheel/touch input landing on it has no
+   scrollable ancestor to bubble to and does nothing (the bug this replaced).
+   Being real (sticky) children keeps native scroll bubbling working
+   everywhere, while .scroll's own clientHeight — fixed by flex:1 against
+   .screen — never changes regardless of what its content does. */
 .scroll {
   flex: 1;
   min-height: 0;
-  padding: 0 var(--screen-margin) 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tab row, date strip and the "earlier today" notification: sticky right
+   below the header, so they don't scroll away with the cards. `top` tracks
+   the header's current (collapsed or not) height via inline style, kept
+   un-transitioned on purpose — animating a sticky offset while the user is
+   actively scrolling is the same class of main-thread jank as animating
+   padding-top (see .cards below), just on a smaller subtree. */
+.topFixed {
+  position: sticky;
+  z-index: 15;
+  flex-shrink: 0;
+  padding: 12px var(--screen-margin) 0;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.tabsWrap { padding-top: 12px; }
+/* No transition on this. padding/margin changes here would be a
+   layout-affecting property animated on content inside the actively-
+   scrolled element — main-thread contention that reads as stutter. The
+   header's own collapse still animates smoothly on its own (self-contained,
+   doesn't affect this box). */
+.cards {
+  padding: 12px var(--screen-margin) 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 .earlierList {
   display: flex;

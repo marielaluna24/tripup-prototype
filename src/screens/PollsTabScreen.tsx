@@ -43,15 +43,16 @@ export function PollsTabScreen() {
 
   return (
     <div className={styles.screen}>
-      <TripHeader
-        collapsed={collapsed}
-        title="Lisbon"
-        onBack={() => navigate("/")}
-        peopleIds={peopleIds}
-        onOpenPeople={() => setPeopleOpen(true)}
-        onAdd={() => navigate("/trip/lisbon/add-member")}
-      />
       <div ref={ref} className={`${styles.scroll} scroll-area`}>
+        <TripHeader
+          collapsed={collapsed}
+          title="Lisbon"
+          onBack={() => navigate("/")}
+          peopleIds={peopleIds}
+          onOpenPeople={() => setPeopleOpen(true)}
+          onAdd={() => navigate("/trip/lisbon/add-member")}
+        />
+        <div className={styles.content}>
         <div className={styles.tabsWrap}>
           <TabRow active="polls" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
         </div>
@@ -125,6 +126,7 @@ export function PollsTabScreen() {
             <span className={styles.decidedQuestion}>Friday night out?</span>
             <span className={styles.decidedResult}>Bairro Alto won 3–2 · added to Fri</span>
           </div>
+        </div>
         </div>
       </div>
 

@@ -1,11 +1,22 @@
 .wrapper {
+  /* A normal (sticky) child of the scroll container, not an overlay sibling
+     outside it. Making it an absolute/fixed sibling of .scroll instead would
+     take it out of .scroll's DOM subtree entirely — and wheel/touch scroll
+     input landing on it (or on any of its buttons) then has no scrollable
+     ancestor to bubble to, since .scroll would be a sibling, not an
+     ancestor: scrolling while the pointer is over the header would do
+     nothing. Being sticky inside .scroll keeps native scroll bubbling
+     working everywhere, while still never resizing .scroll's own
+     clientHeight — overflow containers size from their own box (flex:1 of
+     .screen here), not their content, so this element collapsing only
+     shrinks .scroll's scrollHeight, which is harmless. */
   position: sticky;
   top: 0;
   z-index: 20;
+  flex-shrink: 0;
   height: var(--cover-height);
   overflow: hidden;
   transition: height var(--dur) var(--ease-out);
-  flex-shrink: 0;
   background: var(--bg);
 }
 .wrapper.collapsed { height: var(--cover-collapsed-height); }
@@ -37,22 +48,26 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
+/* Tertiary/ghost: no fill, no blur — just quiet text+icon, a step below the
+   solid back button in visual weight. */
 .changeImage {
   position: absolute;
-  right: var(--screen-margin);
-  top: 54px;
+  right: calc(var(--screen-margin) - 8px);
+  top: 58px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 12px;
-  height: 36px;
+  gap: 4px;
+  padding: 6px 8px;
   border-radius: var(--radius-pill);
-  background: var(--scrim);
-  backdrop-filter: blur(var(--overlay-blur));
+  background: transparent;
   color: var(--text-on-dark);
-  font: var(--text-body-s);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  font: var(--text-caption);
+  transition: background var(--dur-fast) var(--ease-out);
 }
-.changeImage svg { color: var(--color-highlight); }
+.changeImage:hover,
+.changeImage:active { background: rgba(255, 255, 255, 0.1); }
+.changeImage svg { color: var(--text-on-dark); filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45)); }
 
 .titleRow {
   position: absolute;
