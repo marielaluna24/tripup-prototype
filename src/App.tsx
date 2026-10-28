@@ -73,7 +73,7 @@ export default function App() {
           <Route path="/trip/lisbon/plan" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/add-member" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/polls/new" element={<PageTransition direction={direction}><NewPollScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/polls/new" element={<PageTransition direction={direction} variant="scalePop"><NewPollScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls/dinner" element={<PageTransition direction={direction}><LiveVotesScreen /></PageTransition>} />
           <Route path="/trip/lisbon/expenses" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/expenses/new" element={<PageTransition direction={direction}><AddExpenseScreen /></PageTransition>} />

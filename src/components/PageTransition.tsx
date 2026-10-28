@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 type Direction = 1 | -1 | 0;
+type Variant = "push" | "scalePop";
 
 // direction > 0: drilling in (e.g. Home -> Trip) — new screen pushes in from
 // the right, on top, while the old screen drifts left and dims slightly
@@ -13,7 +14,7 @@ type Direction = 1 | -1 | 0;
 // motion or stacking, since neither screen is spatially behind the other.
 // zIndex is part of each variant (not a static style) because which screen
 // belongs on top flips with direction.
-const variants = {
+const pushVariants = {
   initial: (direction: Direction) => ({
     x: direction === 0 ? 0 : direction > 0 ? "100%" : "-30%",
     opacity: direction === 0 ? 0 : direction > 0 ? 1 : 0.6,
@@ -31,9 +32,30 @@ const variants = {
   }),
 };
 
+// scalePop: for a screen that feels like it's popping up on top rather than
+// sliding in spatially (e.g. New poll from the Dinner card's "Start a
+// poll") — no horizontal motion or parallax, just a bouncy scale+fade in.
+// Dismissing (however it's dismissed — Cancel back to Plan, or forward into
+// creating the poll) shrinks back out with a quick, non-bouncy fade instead
+// of bouncing, same rule as the bottom sheet: entering responds to the tap
+// that opened it, leaving shouldn't bounce back.
+const scalePopVariants = {
+  initial: { opacity: 0, scale: 0.85, zIndex: 1 },
+  animate: { opacity: 1, scale: 1, zIndex: 1 },
+  exit: { opacity: 0, scale: 0.92, zIndex: 1 },
+};
+
 const baseStyle = { position: "absolute", inset: 0, display: "flex", flexDirection: "column" } as const;
 
-export function PageTransition({ children, direction }: { children: ReactNode; direction: Direction }) {
+export function PageTransition({
+  children,
+  direction,
+  variant = "push",
+}: {
+  children: ReactNode;
+  direction: Direction;
+  variant?: Variant;
+}) {
   const reduceMotion = useReducedMotion();
 
   if (reduceMotion) {
@@ -44,11 +66,24 @@ export function PageTransition({ children, direction }: { children: ReactNode; d
     );
   }
 
+  if (variant === "scalePop") {
+    return (
+      <motion.div
+        style={baseStyle}
+        initial={scalePopVariants.initial}
+        animate={{ ...scalePopVariants.animate, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
+        exit={{ ...scalePopVariants.exit, transition: { type: "spring", bounce: 0, duration: 0.22 } }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       style={baseStyle}
       custom={direction}
-      variants={variants}
+      variants={pushVariants}
       initial="initial"
       animate="animate"
       exit="exit"
