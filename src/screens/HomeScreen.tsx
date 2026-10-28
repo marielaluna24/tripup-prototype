@@ -1,4 +1,4 @@
-import { Bell, Calendar, Music, Mountain, Plus, Users } from "lucide-react";
+import { Bell, Calendar, Check, Landmark, Music, Mountain, Plus, Users } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
@@ -157,11 +157,22 @@ export function HomeScreen() {
           <span className={styles.sectionLabel}>Past</span>
           {OTHER_TRIPS.filter((t) => t.status === "past").map((trip) => (
             <div className={styles.tripRow} key={trip.id}>
-              <div className={styles.tripArt} style={{ background: "var(--illus-cream-deep)" }} />
+              <div className={styles.tripArt} style={{ background: "var(--illus-cream-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Landmark size={22} color="var(--illus-terracotta)" aria-hidden="true" />
+              </div>
               <div className={styles.tripInfo}>
                 <div className={styles.tripName}>{trip.name}</div>
                 <div className={styles.tripMeta}>
-                  {trip.dateRange} · {trip.note}
+                  <span className={styles.tripMetaItem}>
+                    <Calendar size={12} aria-hidden="true" />
+                    {trip.dateRange}
+                  </span>
+                  {trip.note && (
+                    <span className={styles.tripMetaItem}>
+                      <Check size={12} aria-hidden="true" />
+                      {trip.note}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
