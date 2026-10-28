@@ -104,7 +104,10 @@
   flex-direction: column;
   gap: 4px;
 }
-.equalLabel { font: var(--text-caption); color: var(--text-on-card-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+/* Same normal-case, bold "title" treatment used elsewhere, scaled to this
+   compact card (the full 17px section-title size would overpower it here,
+   above a 32px amount). */
+.equalLabel { font: 700 13px/18px var(--font); color: var(--text-on-card); }
 .equalDetail { font: var(--text-body-s); color: var(--text-on-card-muted); }
 .equalEach { font: var(--text-amount); font-size: 32px; color: #1A1A1A; margin-top: 4px; }
 

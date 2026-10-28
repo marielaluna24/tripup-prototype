@@ -67,12 +67,10 @@
 }
 
 .section { display: flex; flex-direction: column; gap: 10px; }
-.sectionLabel {
-  font: var(--text-label);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-on-dark-muted);
-}
+/* Matches the section-title style used elsewhere (Polls' "Open (1)" /
+   "Decided (2)", Pay's "Who are you paying now?") rather than a small
+   uppercase tracked label. */
+.sectionLabel { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
 
 .heroCard {
   border-radius: var(--radius-card);
@@ -115,7 +113,10 @@
 
 .heroStats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .stat { background: var(--card-muted); border-radius: 16px; padding: 10px 12px; }
-.statLabel { font: 600 10px/14px var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-on-card-subtle); }
+/* Same normal-case, bold "title" treatment as .sectionLabel above, scaled
+   down to fit this compact stat tile (it sits right over a 15px value —
+   the full 17px section-title size would overpower it here). */
+.statLabel { font: 700 13px/18px var(--font); color: var(--text-on-card); }
 .statValue { font: 700 15px/20px var(--font); color: #1A1A1A; margin-top: 2px; }
 .statValue.owed { color: #047857; }
 .statValue.owe { color: #B45309; }

@@ -12,12 +12,10 @@
 }
 
 .balanceSection { display: flex; flex-direction: column; gap: 10px; }
-.sectionLabel {
-  font: var(--text-label);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-on-dark-muted);
-}
+/* Matches the section-title style used elsewhere (Polls' "Open (1)" /
+   "Decided (2)", Pay's "Who are you paying now?") rather than a small
+   uppercase tracked label. */
+.sectionLabel { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
 
 .balanceValue {
   font: var(--text-amount);
