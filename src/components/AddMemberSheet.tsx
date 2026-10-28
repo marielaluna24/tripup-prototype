@@ -11,7 +11,7 @@ export function AddMemberSheet({ onClose, onAdded }: { onClose: () => void; onAd
   const [freeTimeChecked, setFreeTimeChecked] = useState(false);
 
   return (
-    <BottomSheet title="Add to Lisbon" onClose={onClose}>
+    <BottomSheet title="Add to Lisbon" onClose={onClose} dismissible={false}>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="member-name">Name, phone or email</label>
         <input id="member-name" className={styles.input} defaultValue="Ren" />

@@ -12,11 +12,15 @@ export function BottomSheet({
   onClose,
   children,
   closeLabel = "Close",
+  dismissible = true,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   closeLabel?: string;
+  /** Drag-to-dismiss and tap-outside are off, and the drag handle isn't
+   * shown, when false — the X button is then the only way to close. */
+  dismissible?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const dragControls = useDragControls();
@@ -34,7 +38,7 @@ export function BottomSheet({
   return (
     <motion.div
       className={styles.scrim}
-      onClick={onClose}
+      onClick={dismissible ? onClose : undefined}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -63,7 +67,7 @@ export function BottomSheet({
             ? { opacity: 0, transition: { duration: 0.2 } }
             : { y: "100%", transition: { type: "spring", bounce: 0, duration: 0.3 } }
         }
-        drag={reduceMotion ? false : "y"}
+        drag={dismissible && !reduceMotion ? "y" : false}
         dragControls={dragControls}
         dragListener={false}
         dragConstraints={{ top: 0, bottom: 0 }}
@@ -72,11 +76,13 @@ export function BottomSheet({
           if (info.offset.y > CLOSE_OFFSET || info.velocity.y > CLOSE_VELOCITY) onClose();
         }}
       >
-        <div
-          className={styles.handle}
-          aria-hidden="true"
-          onPointerDown={(e) => dragControls.start(e)}
-        />
+        {dismissible && (
+          <div
+            className={styles.handle}
+            aria-hidden="true"
+            onPointerDown={(e) => dragControls.start(e)}
+          />
+        )}
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
           <button type="button" className={styles.closeBtn} onClick={onClose} aria-label={closeLabel}>
