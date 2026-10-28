@@ -37,7 +37,7 @@
 .perspectiveWrap { margin-top: 4px; }
 
 .h1 { font: var(--text-title-l); font-size: 26px; color: var(--text-on-dark); }
-.sub { font: var(--text-body-s); color: var(--text-on-dark-muted); margin-top: -8px; }
+.sub { font: var(--text-body-s); color: var(--text-on-dark-muted); margin-top: 4px; }
 
 .section { display: flex; flex-direction: column; gap: 10px; }
 .legend { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
