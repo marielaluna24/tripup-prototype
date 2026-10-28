@@ -74,4 +74,5 @@
   gap: 2px;
 }
 .decidedQuestion { font: 600 15px/20px var(--font); color: #1A1A1A; }
+.addedToBadge { margin-top: 4px; }
 .decidedResult { font: var(--text-caption); color: var(--text-on-card-muted); }

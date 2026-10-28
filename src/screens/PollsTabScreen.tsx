@@ -2,6 +2,7 @@ import { Clock, User, Vote } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PEOPLE } from "../data/people";
 import { POLL_OPTIONS, POLL_QUESTION } from "../data/plan";
+import { StatusBadge } from "../components/StatusBadge";
 import { useEnsureRenAdded } from "../hooks/useEnsureRenAdded";
 import { useDemo } from "../state/DemoContext";
 import { getPeopleCount, getPollTallies, getVotedCount, getWaitingOn, getYourVoteOptionId } from "../state/selectors";
@@ -102,17 +103,26 @@ export function PollsBody() {
           <div className={styles.decidedCard}>
             <span className={styles.decidedQuestion}>{POLL_QUESTION}</span>
             <span className={styles.decidedResult}>
-              {POLL_OPTIONS.find((o) => o.id === state.poll.winnerId)?.name} won · added to Sun
+              {POLL_OPTIONS.find((o) => o.id === state.poll.winnerId)?.name} won
             </span>
+            <div className={styles.addedToBadge}>
+              <StatusBadge kind="won" label="Added to Sun" />
+            </div>
           </div>
         )}
         <div className={styles.decidedCard}>
           <span className={styles.decidedQuestion}>Sintra: palace or castle?</span>
-          <span className={styles.decidedResult}>Pena Palace won 4–1 · added to Sat</span>
+          <span className={styles.decidedResult}>Pena Palace won 4–1</span>
+          <div className={styles.addedToBadge}>
+            <StatusBadge kind="won" label="Added to Sat" />
+          </div>
         </div>
         <div className={styles.decidedCard}>
           <span className={styles.decidedQuestion}>Friday night out?</span>
-          <span className={styles.decidedResult}>Bairro Alto won 3–2 · added to Fri</span>
+          <span className={styles.decidedResult}>Bairro Alto won 3–2</span>
+          <div className={styles.addedToBadge}>
+            <StatusBadge kind="won" label="Added to Fri" />
+          </div>
         </div>
       </div>
     </div>
