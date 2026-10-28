@@ -1,0 +1,75 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  position: relative;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tab row (+ date strip, on Plan): sticky right below the header, shared
+   across Plan/Polls/Expenses so it never remounts or transitions when
+   switching tabs — only the body below it (.body) does. Translucent
+   tinted background, fading in/out at top and bottom, so content eases
+   behind it instead of vanishing at a flat edge. Plain gradient, no
+   backdrop-filter: blur() on a sticky element is a known Mobile Safari
+   freeze trigger (confirmed — scrolling locked up here), so this trades a
+   true blur for a safe, cheap alpha fade instead. ::before sits behind the
+   real tab/date content (z-index -1 inside .chrome's own stacking
+   context), which stays fully legible throughout. */
+.chrome {
+  position: sticky;
+  top: var(--cover-height);
+  z-index: 15;
+  padding: 12px var(--screen-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chrome::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  bottom: -28px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--chrome-bg) 16px,
+    var(--chrome-bg) calc(100% - 28px),
+    transparent
+  );
+}
+
+/* Wraps each tab's own content so it can cross-fade on tab switches while
+   the header and .chrome above stay put. */
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.fabLink {
+  position: absolute;
+  right: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  width: var(--size-fab);
+  height: var(--size-fab);
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-float);
+  z-index: 40;
+}

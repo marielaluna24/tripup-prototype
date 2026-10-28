@@ -6,24 +6,31 @@ import { PageTransition } from "./components/PageTransition";
 import { PhoneFrame } from "./components/PhoneFrame";
 import { Toast } from "./components/Toast";
 import { AddExpenseScreen } from "./screens/AddExpenseScreen";
-import { ExpensesScreen } from "./screens/ExpensesScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { LiveVotesScreen } from "./screens/LiveVotesScreen";
 import { NewPollScreen } from "./screens/NewPollScreen";
 import { NewTripScreen } from "./screens/NewTripScreen";
 import { PayScreen } from "./screens/PayScreen";
-import { PlanScreen } from "./screens/PlanScreen";
-import { PollsTabScreen } from "./screens/PollsTabScreen";
 import { SettleUpScreen } from "./screens/SettleUpScreen";
+import { TripScreen } from "./screens/TripScreen";
 
-// Routes that just toggle a sheet over the same underlying screen
-// (Plan <-> Add member, Expenses <-> Balances) share a transition key with
-// their base route, so opening/closing the sheet updates props in place
-// instead of remounting (and re-sliding) the whole page — BottomSheet's own
-// motion already covers that interaction; the page itself hasn't changed.
+// Plan / Polls / Expenses (and the sheet routes layered over them, Add
+// member and Balances) all render the same <TripScreen>, which owns the
+// trip header and tab row once and keeps them static while only its body
+// cross-fades per tab. Grouping them under one key here means switching
+// between them re-renders TripScreen in place instead of having this outer
+// AnimatePresence unmount/remount (and slide/fade) the whole screen —
+// header included — on every tab tap.
+const TRIP_TAB_ROUTES = new Set([
+  "/trip/lisbon/plan",
+  "/trip/lisbon/add-member",
+  "/trip/lisbon/polls",
+  "/trip/lisbon/expenses",
+  "/trip/lisbon/balances",
+]);
+
 function pageKeyFor(pathname: string): string {
-  if (pathname === "/trip/lisbon/add-member") return "/trip/lisbon/plan";
-  if (pathname === "/trip/lisbon/balances") return "/trip/lisbon/expenses";
+  if (TRIP_TAB_ROUTES.has(pathname)) return "/trip/lisbon/tabs";
   return pathname;
 }
 
@@ -63,14 +70,14 @@ export default function App() {
       <AnimatePresence initial={false}>
         <Routes location={location} key={key}>
           <Route path="/" element={<PageTransition direction={direction}><HomeScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/plan" element={<PageTransition direction={direction}><PlanScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/add-member" element={<PageTransition direction={direction}><PlanScreen addMemberSheet /></PageTransition>} />
-          <Route path="/trip/lisbon/polls" element={<PageTransition direction={direction}><PollsTabScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/plan" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/add-member" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/polls" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls/new" element={<PageTransition direction={direction}><NewPollScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls/dinner" element={<PageTransition direction={direction}><LiveVotesScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/expenses" element={<PageTransition direction={direction}><ExpensesScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/expenses" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/expenses/new" element={<PageTransition direction={direction}><AddExpenseScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/balances" element={<PageTransition direction={direction}><ExpensesScreen balancesSheet /></PageTransition>} />
+          <Route path="/trip/lisbon/balances" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/settle" element={<PageTransition direction={direction}><SettleUpScreen /></PageTransition>} />
           <Route path="/trip/lisbon/pay" element={<PageTransition direction={direction}><PayScreen /></PageTransition>} />
           <Route path="/trips/new" element={<PageTransition direction={direction}><NewTripScreen /></PageTransition>} />

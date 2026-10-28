@@ -1,55 +1,24 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { AnimatePresence } from "motion/react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { AddMemberSheet } from "../components/AddMemberSheet";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { DayStrip } from "../components/DayStrip";
-import { Fab } from "../components/Fab";
-import { FabMenu, type FabMenuAction } from "../components/FabMenu";
 import { InfoRow } from "../components/InfoRow";
-import { PeopleSheet } from "../components/PeopleSheet";
 import { PlanCard } from "../components/PlanCard";
-import { TabRow } from "../components/TabRow";
-import { TripHeader } from "../components/TripHeader";
 import { EARLIER_TODAY, FREE_TIME, POLL_CLOSES_LABEL } from "../data/plan";
-import { TRIP_DAYS } from "../data/trip";
 import { useDemo } from "../state/DemoContext";
-import {
-  getDinnerCardActions,
-  getDinnerCardStatus,
-  getExpensesTabDot,
-  getPeopleCount,
-  getPeopleIds,
-  getPollsTabDot,
-  getVotedCount,
-} from "../state/selectors";
+import { getDinnerCardActions, getDinnerCardStatus, getPeopleCount, getVotedCount } from "../state/selectors";
 import styles from "./PlanScreen.module.css";
 
-export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolean }) {
+// Plan tab's own scrolling content. Rendered inside TripScreen's shared
+// shell (header, tab row, day strip, FAB, sheets), which stays static while
+// this cross-fades on tab switches — see TripScreen.tsx.
+export function PlanBody() {
   const { state, dispatch } = useDemo();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [peopleOpen, setPeopleOpen] = useState(false);
   const [earlierExpanded, setEarlierExpanded] = useState(false);
 
-  const peopleIds = getPeopleIds(state);
   const cardStatus = getDinnerCardStatus(state);
   const cardActions = getDinnerCardActions(state);
-  const fabOpen = searchParams.get("menu") === "open";
-
-  function openMenu() {
-    setSearchParams({ menu: "open" }, { replace: false });
-  }
-  function closeMenu() {
-    navigate("/trip/lisbon/plan", { replace: true });
-  }
-
-  function handleMenuSelect(key: FabMenuAction["key"]) {
-    closeMenu();
-    if (key === "add-expense") navigate("/trip/lisbon/expenses/new");
-    if (key === "create-poll") navigate("/trip/lisbon/polls/new");
-  }
 
   function notAvailable() {
     dispatch({ type: "SHOW_TOAST", toast: { message: "Not part of this demo" } });
@@ -82,88 +51,50 @@ export function PlanScreen({ addMemberSheet = false }: { addMemberSheet?: boolea
         : "20:30";
 
   return (
-    <div className={styles.screen}>
-      <div className={`${styles.scroll} scroll-area`}>
-        <TripHeader
-          title="Lisbon"
-          onBack={() => navigate("/")}
-          peopleIds={peopleIds}
-          onOpenPeople={() => setPeopleOpen(true)}
-          onAdd={() => navigate("/trip/lisbon/add-member")}
-        />
-        {/* Sticky right below the header: content (earlier today + cards)
-            scrolls up behind this, blurred through its frosted background,
-            rather than stopping at a hard edge. */}
-        <div className={styles.chrome}>
-          <TabRow active="plan" tripId="lisbon" pollsDot={getPollsTabDot(state)} expensesDot={getExpensesTabDot(state)} />
-          <DayStrip days={TRIP_DAYS} selectedKey="sun" />
-        </div>
-
-        <div className={styles.content}>
-          <InfoRow
-            as="button"
-            text={`Earlier today · Pastéis de Belém, Alfama walk`}
-            trailing={
-              <>
-                2 done <ChevronDown size={14} style={{ transform: earlierExpanded ? "rotate(180deg)" : undefined }} aria-hidden="true" />
-              </>
-            }
-            onClick={() => setEarlierExpanded((v) => !v)}
-          />
-          {earlierExpanded && (
-            <div className={styles.earlierList}>
-              {EARLIER_TODAY.map((item) => (
-                <div className={styles.earlierItem} key={item.id}>
-                  <span>{item.title}</span>
-                  <span>{item.timeLabel}</span>
-                </div>
-              ))}
+    <div className={styles.content}>
+      <InfoRow
+        as="button"
+        text={`Earlier today · Pastéis de Belém, Alfama walk`}
+        trailing={
+          <>
+            2 done <ChevronDown size={14} style={{ transform: earlierExpanded ? "rotate(180deg)" : undefined }} aria-hidden="true" />
+          </>
+        }
+        onClick={() => setEarlierExpanded((v) => !v)}
+      />
+      {earlierExpanded && (
+        <div className={styles.earlierList}>
+          {EARLIER_TODAY.map((item) => (
+            <div className={styles.earlierItem} key={item.id}>
+              <span>{item.title}</span>
+              <span>{item.timeLabel}</span>
             </div>
-          )}
-
-          <PlanCard badge="ongoing" title={FREE_TIME.title} timeLabel={FREE_TIME.timeLabel} art="house" />
-
-          <PlanCard
-            badge={dinnerBadge}
-            title={dinnerTitle}
-            timeLabel={dinnerTime}
-            art="restaurant"
-            isNew={false}
-            actions={
-              <>
-                {cardActions.map((a) => (
-                  <Button
-                    key={a.kind}
-                    variant={a.variant === "primary" ? "card-primary" : "card-secondary"}
-                    onClick={() => handleCardAction(a.kind)}
-                  >
-                    {a.label}
-                  </Button>
-                ))}
-              </>
-            }
-          />
+          ))}
         </div>
-      </div>
+      )}
 
-      <Fab open={fabOpen} onClick={fabOpen ? closeMenu : openMenu} />
-      <AnimatePresence>
-        {fabOpen && <FabMenu onSelect={handleMenuSelect} onClose={closeMenu} />}
-      </AnimatePresence>
-      <AnimatePresence>
-        {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
-      </AnimatePresence>
-      <AnimatePresence>
-        {addMemberSheet && (
-          <AddMemberSheet
-            onClose={() => navigate("/trip/lisbon/plan")}
-            onAdded={() => {
-              dispatch({ type: "ADD_REN" });
-              navigate("/trip/lisbon/plan");
-            }}
-          />
-        )}
-      </AnimatePresence>
+      <PlanCard badge="ongoing" title={FREE_TIME.title} timeLabel={FREE_TIME.timeLabel} art="house" />
+
+      <PlanCard
+        badge={dinnerBadge}
+        title={dinnerTitle}
+        timeLabel={dinnerTime}
+        art="restaurant"
+        isNew={false}
+        actions={
+          <>
+            {cardActions.map((a) => (
+              <Button
+                key={a.kind}
+                variant={a.variant === "primary" ? "card-primary" : "card-secondary"}
+                onClick={() => handleCardAction(a.kind)}
+              >
+                {a.label}
+              </Button>
+            ))}
+          </>
+        }
+      />
     </div>
   );
 }

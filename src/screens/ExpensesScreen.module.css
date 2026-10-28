@@ -1,51 +1,6 @@
-.screen {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  position: relative;
-}
-
-.scroll {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Tab row: sticky right below the header. Translucent tinted background,
-   fading in/out at top and bottom, so content eases behind it instead of
-   vanishing at a flat edge. Plain gradient, no backdrop-filter: blur() on a
-   sticky element is a known Mobile Safari freeze trigger (confirmed —
-   scrolling locked up here), so this trades a true blur for a safe, cheap
-   alpha fade instead. The real tab row content stays on top, fully
-   legible, via z-index. */
-.tabsWrap {
-  position: sticky;
-  top: var(--cover-height);
-  z-index: 15;
-  padding: 12px var(--screen-margin);
-}
-.tabsWrap::before {
-  content: "";
-  position: absolute;
-  top: -16px;
-  left: 0;
-  right: 0;
-  bottom: -28px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--chrome-bg) 16px,
-    var(--chrome-bg) calc(100% - 28px),
-    transparent
-  );
-}
-
-/* Everything below the tab row: scrolls, passing behind .tabsWrap above. */
+/* .screen / .scroll / .chrome / FAB / sheets now live in TripScreen (the
+   shared shell for Plan/Polls/Expenses) — see TripScreen.module.css. This
+   file only styles the Expenses tab's own scrolling content. */
 .content {
   padding: 0 var(--screen-margin) 110px;
   display: flex;
