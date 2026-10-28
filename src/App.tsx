@@ -81,7 +81,7 @@ export default function App() {
           <Route path="/trip/lisbon/balances" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/settle" element={<PageTransition direction={direction}><SettleUpScreen /></PageTransition>} />
           <Route path="/trip/lisbon/pay" element={<PageTransition direction={direction}><PayScreen /></PageTransition>} />
-          <Route path="/trips/new" element={<PageTransition direction={direction}><NewTripScreen /></PageTransition>} />
+          <Route path="/trips/new" element={<PageTransition direction={direction} variant="scalePop"><NewTripScreen /></PageTransition>} />
           <Route path="*" element={<PageTransition direction={direction}><HomeScreen /></PageTransition>} />
         </Routes>
       </AnimatePresence>
