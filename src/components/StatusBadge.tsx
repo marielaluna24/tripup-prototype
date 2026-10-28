@@ -20,11 +20,11 @@ const CLASS: Record<BadgeKind, string> = {
 export function StatusBadge({ kind, label }: { kind: BadgeKind; label?: string }) {
   return (
     <span className={`${styles.badge} ${CLASS[kind]}`}>
-      {kind === "won" ? (
-        <Check size={12} strokeWidth={3} color="var(--badge-won-icon)" aria-hidden="true" />
-      ) : (
-        <span className={styles.dot} aria-hidden="true" />
-      )}
+      {kind === "won" && <Check size={12} strokeWidth={3} color="var(--badge-won-icon)" aria-hidden="true" />}
+      {/* Per CLAUDE.md: Ongoing/Poll open are outline + dot, Not decided
+          yet is dashed only — no dot (it previously rendered an invisible
+          one here, leaving a gap before the text). */}
+      {(kind === "ongoing" || kind === "poll-open") && <span className={styles.dot} aria-hidden="true" />}
       {label ?? LABELS[kind]}
     </span>
   );
