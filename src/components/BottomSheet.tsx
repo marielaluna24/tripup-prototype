@@ -48,10 +48,21 @@ export function BottomSheet({
         tabIndex={-1}
         ref={ref}
         onClick={(e) => e.stopPropagation()}
+        // M3-Expressive-style spatial springs: the sheet overshoots slightly
+        // on the way in (a "spatial" spring, bounce > 0) since it's
+        // responding to the tap that opened it, but leaves with a plain
+        // damped spring (bounce 0) — dismissing shouldn't bounce back up.
         initial={reduceMotion ? { opacity: 0 } : { y: "100%" }}
-        animate={reduceMotion ? { opacity: 1 } : { y: 0 }}
-        exit={reduceMotion ? { opacity: 0 } : { y: "100%" }}
-        transition={reduceMotion ? { duration: 0.2 } : { type: "spring", bounce: 0, duration: 0.4 }}
+        animate={
+          reduceMotion
+            ? { opacity: 1, transition: { duration: 0.2 } }
+            : { y: 0, transition: { type: "spring", bounce: 0.32, duration: 0.55 } }
+        }
+        exit={
+          reduceMotion
+            ? { opacity: 0, transition: { duration: 0.2 } }
+            : { y: "100%", transition: { type: "spring", bounce: 0, duration: 0.3 } }
+        }
         drag={reduceMotion ? false : "y"}
         dragControls={dragControls}
         dragListener={false}
