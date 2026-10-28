@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { AddMemberSheet } from "../components/AddMemberSheet";
 import { BalancesSheet } from "../components/BalancesSheet";
@@ -31,16 +31,17 @@ function tabFor(pathname: string): TabKey {
 }
 
 // Shared shell for the Plan / Polls / Expenses tabs: header, tab row (+ day
-// strip on Plan), FAB and sheets all live here, once, so they never
-// remount or transition when switching tabs — only .body below cross-fades
-// (keyed by tab, mode="wait" so the two never overlap mid-scroll).
+// strip on Plan), FAB and sheets all live here, once, so they never remount
+// or transition when switching tabs. The body below swaps instantly (no
+// fade) — it's most of the 844pt screen, so even a quick cross-fade there
+// still reads as "the whole screen is transitioning"; tab switches should
+// feel like flipping a native tab bar, not navigating to a new screen.
 export function TripScreen() {
   const { state, dispatch } = useDemo();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const [peopleOpen, setPeopleOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
 
   const peopleIds = getPeopleIds(state);
   const tab = tabFor(location.pathname);
@@ -75,20 +76,11 @@ export function TripScreen() {
           {tab === "plan" && <DayStrip days={TRIP_DAYS} selectedKey="sun" />}
         </div>
 
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={tab}
-            className={styles.body}
-            initial={reduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.16 }}
-          >
-            {tab === "plan" && <PlanBody />}
-            {tab === "polls" && <PollsBody />}
-            {tab === "expenses" && <ExpensesBody />}
-          </motion.div>
-        </AnimatePresence>
+        <div className={styles.body} key={tab}>
+          {tab === "plan" && <PlanBody />}
+          {tab === "polls" && <PollsBody />}
+          {tab === "expenses" && <ExpensesBody />}
+        </div>
       </div>
 
       {tab === "polls" ? (
