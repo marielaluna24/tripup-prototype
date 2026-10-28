@@ -4,8 +4,9 @@ import { motion, useReducedMotion } from "motion/react";
 type Direction = 1 | -1 | 0;
 type Variant = "push" | "scalePop";
 
-// direction > 0: drilling in (e.g. Home -> Trip) — new screen pushes in from
-// the right, on top, while the old screen drifts left and dims slightly
+// direction > 0: drilling in (e.g. Expenses -> Settle up) — new screen
+// pushes in from the right, on top, while the old screen drifts left and
+// dims slightly
 // (parallax) underneath, like an iOS push. direction < 0: the reverse
 // (popping back) — the old screen stays on top and slides fully away to the
 // right, revealing the dimmed previous screen from underneath on the left.
@@ -32,13 +33,15 @@ const pushVariants = {
   }),
 };
 
-// scalePop: for a screen that feels like it's popping up on top rather than
-// sliding in spatially (e.g. New poll from the Dinner card's "Start a
-// poll") — no horizontal motion or parallax, just a bouncy scale+fade in.
-// Dismissing (however it's dismissed — Cancel back to Plan, or forward into
-// creating the poll) shrinks back out with a quick, non-bouncy fade instead
-// of bouncing, same rule as the bottom sheet: entering responds to the tap
-// that opened it, leaving shouldn't bounce back.
+// scalePop: for a screen that feels like it grows open from the center
+// rather than sliding in spatially — e.g. Home -> Trip (tapping the Lisbon
+// card), or New poll from the Dinner card's "Start a poll". No horizontal
+// motion or parallax, just a bouncy scale+fade in (scale's transform-origin
+// defaults to center, so it grows from the middle of the screen, not a
+// corner). Dismissing (back to Home/Plan, or forward past this screen)
+// shrinks back out with a quick, non-bouncy fade instead of bouncing, same
+// rule as the bottom sheet: entering responds to the tap that opened it,
+// leaving shouldn't bounce back.
 const scalePopVariants = {
   initial: { opacity: 0, scale: 0.85, zIndex: 1 },
   animate: { opacity: 1, scale: 1, zIndex: 1 },

@@ -70,14 +70,14 @@ export default function App() {
       <AnimatePresence initial={false}>
         <Routes location={location} key={key}>
           <Route path="/" element={<PageTransition direction={direction}><HomeScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/plan" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/add-member" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/polls" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/plan" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/add-member" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/polls" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls/new" element={<PageTransition direction={direction} variant="scalePop"><NewPollScreen /></PageTransition>} />
           <Route path="/trip/lisbon/polls/dinner" element={<PageTransition direction={direction}><LiveVotesScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/expenses" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/expenses" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/expenses/new" element={<PageTransition direction={direction}><AddExpenseScreen /></PageTransition>} />
-          <Route path="/trip/lisbon/balances" element={<PageTransition direction={direction}><TripScreen /></PageTransition>} />
+          <Route path="/trip/lisbon/balances" element={<PageTransition direction={direction} variant="scalePop"><TripScreen /></PageTransition>} />
           <Route path="/trip/lisbon/settle" element={<PageTransition direction={direction}><SettleUpScreen /></PageTransition>} />
           <Route path="/trip/lisbon/pay" element={<PageTransition direction={direction}><PayScreen /></PageTransition>} />
           <Route path="/trips/new" element={<PageTransition direction={direction}><NewTripScreen /></PageTransition>} />
