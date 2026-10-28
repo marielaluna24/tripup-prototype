@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 type Direction = 1 | -1 | 0;
-type Variant = "push" | "scalePop";
+type Variant = "push" | "scalePop" | "cornerPop";
 
 // direction > 0: drilling in (e.g. Expenses -> Settle up) — new screen
 // pushes in from the right, on top, while the old screen drifts left and
@@ -48,6 +48,19 @@ const scalePopVariants = {
   exit: { opacity: 0, scale: 0.92, zIndex: 1 },
 };
 
+// cornerPop: like scalePop entering (grows open from center), but leaves
+// by bouncily shrinking into the close button's corner instead of fading
+// in place — "sucked into the X" rather than a flat shrink. Only the
+// transform-origin differs between enter and exit (center vs. the
+// button's position), set per-state since Framer applies it instantly
+// rather than animating it.
+const CLOSE_BTN_ORIGIN = "38px 36px"; // SheetHeader's X button center, measured
+const cornerPopVariants = {
+  initial: { opacity: 0, scale: 0.85, zIndex: 1, transformOrigin: "50% 50%" },
+  animate: { opacity: 1, scale: 1, zIndex: 1, transformOrigin: "50% 50%" },
+  exit: { opacity: 0, scale: 0.15, zIndex: 1, transformOrigin: CLOSE_BTN_ORIGIN },
+};
+
 const baseStyle = { position: "absolute", inset: 0, display: "flex", flexDirection: "column" } as const;
 
 export function PageTransition({
@@ -76,6 +89,30 @@ export function PageTransition({
         initial={scalePopVariants.initial}
         animate={{ ...scalePopVariants.animate, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
         exit={{ ...scalePopVariants.exit, transition: { type: "spring", bounce: 0, duration: 0.22 } }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
+  if (variant === "cornerPop") {
+    return (
+      <motion.div
+        style={baseStyle}
+        initial={cornerPopVariants.initial}
+        animate={{ ...cornerPopVariants.animate, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
+        exit={{
+          ...cornerPopVariants.exit,
+          // opacity gets its own plain fade: a bouncy spring targeting 0
+          // crosses it almost immediately (overshoot would mean negative
+          // opacity, clamped), which would hide the scale bounce before
+          // it's visible. Letting opacity fade on its own, slower, keeps
+          // the shrink-into-the-button bounce actually visible.
+          transition: {
+            scale: { type: "spring", bounce: 0.45, duration: 0.45 },
+            opacity: { duration: 0.4, ease: "easeIn" },
+          },
+        }}
       >
         {children}
       </motion.div>
