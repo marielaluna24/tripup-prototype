@@ -27,7 +27,11 @@ export function BottomSheet({
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    ref.current?.focus();
+    // preventScroll: focusing a dialog that's technically outside the
+    // current viewport bounds (e.g. the phone frame taller than the
+    // browser window) would otherwise make the browser scroll the page to
+    // bring it into view — a jump that reads as "the background slides".
+    ref.current?.focus({ preventScroll: true });
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }

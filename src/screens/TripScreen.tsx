@@ -2,8 +2,6 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { AddMemberSheet } from "../components/AddMemberSheet";
-import { BalancesSheet } from "../components/BalancesSheet";
 import { DayStrip } from "../components/DayStrip";
 import { Fab } from "../components/Fab";
 import { FabMenu, type FabMenuAction } from "../components/FabMenu";
@@ -31,13 +29,16 @@ function tabFor(pathname: string): TabKey {
 }
 
 // Shared shell for the Plan / Polls / Expenses tabs: header, tab row (+ day
-// strip on Plan), FAB and sheets all live here, once, so they never remount
-// or transition when switching tabs. The body below swaps instantly (no
+// strip on Plan) and FAB all live here, once, so they never remount or
+// transition when switching tabs. The body below swaps instantly (no
 // fade) — it's most of the 844pt screen, so even a quick cross-fade there
 // still reads as "the whole screen is transitioning"; tab switches should
 // feel like flipping a native tab bar, not navigating to a new screen.
+// PeopleSheet stays local (it's triggered by a tap here, not a route), but
+// Add member and Balances are route-driven sheets rendered by <TripSheets>
+// at the App level instead — see that file for why.
 export function TripScreen() {
-  const { state, dispatch } = useDemo();
+  const { state } = useDemo();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -98,20 +99,6 @@ export function TripScreen() {
 
       <AnimatePresence>
         {peopleOpen && <PeopleSheet peopleIds={peopleIds} onClose={() => setPeopleOpen(false)} />}
-      </AnimatePresence>
-      <AnimatePresence>
-        {location.pathname === "/trip/lisbon/add-member" && (
-          <AddMemberSheet
-            onClose={() => navigate("/trip/lisbon/plan")}
-            onAdded={() => {
-              dispatch({ type: "ADD_REN" });
-              navigate("/trip/lisbon/plan");
-            }}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {location.pathname === "/trip/lisbon/balances" && <BalancesSheet onClose={() => navigate("/trip/lisbon/expenses")} />}
       </AnimatePresence>
     </div>
   );

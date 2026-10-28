@@ -5,6 +5,7 @@ import { OverlayHost } from "./components/OverlayHost";
 import { PageTransition } from "./components/PageTransition";
 import { PhoneFrame } from "./components/PhoneFrame";
 import { Toast } from "./components/Toast";
+import { TripSheets } from "./components/TripSheets";
 import { AddExpenseScreen } from "./screens/AddExpenseScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { LiveVotesScreen } from "./screens/LiveVotesScreen";
@@ -84,6 +85,7 @@ export default function App() {
           <Route path="*" element={<PageTransition direction={direction}><HomeScreen /></PageTransition>} />
         </Routes>
       </AnimatePresence>
+      <TripSheets />
       <OverlayHost />
       <Toast />
     </PhoneFrame>
