@@ -40,7 +40,11 @@
 .sub { font: var(--text-body-s); color: var(--text-on-dark-muted); margin-top: 4px; }
 
 .section { display: flex; flex-direction: column; gap: 10px; }
-.legend { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
+/* <legend> doesn't pick up the flex `gap` above like a normal child would
+   (measured: 0px actual gap despite .section's gap: 10px), so it needs its
+   own margin to match the label-to-card spacing other screens get for
+   free from that gap. */
+.legend { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); margin: 0 0 10px; padding: 0; }
 
 .payRow {
   display: flex;
