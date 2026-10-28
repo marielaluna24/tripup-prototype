@@ -17,7 +17,7 @@ export function NewTripScreen() {
 
   return (
     <div className={styles.screen}>
-      <SheetHeader title="New trip" cancelTo="/" cancelLabel="Close" />
+      <SheetHeader title="New trip" cancelTo="/" cancelLabel="Close" closeIcon />
       <div className={`${styles.scroll} scroll-area`}>
         <button type="button" className={styles.coverBtn} onClick={notAvailable}>
           <ImageIcon size={22} aria-hidden="true" />
