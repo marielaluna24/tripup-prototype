@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 import styles from "./TabRow.module.css";
 
@@ -14,6 +15,7 @@ export function TabRow({
   pollsDot?: boolean;
   expensesDot?: boolean;
 }) {
+  const reduceMotion = useReducedMotion();
   const tabs: { key: TabKey; label: string; to: string; dot?: boolean; dotLabel?: string }[] = [
     { key: "plan", label: "Plan", to: `/trip/${tripId}/plan` },
     { key: "polls", label: "Polls", to: `/trip/${tripId}/polls`, dot: pollsDot, dotLabel: "a poll waits for your vote" },
@@ -22,17 +24,29 @@ export function TabRow({
 
   return (
     <nav className={styles.track} aria-label="Trip sections">
-      {tabs.map((tab) => (
-        <Link
-          key={tab.key}
-          to={tab.to}
-          className={`${styles.tab} ${active === tab.key ? styles.tabActive : ""}`}
-          aria-current={active === tab.key ? "page" : undefined}
-        >
-          {tab.label}
-          {tab.dot && <span className={styles.dot} aria-label={tab.dotLabel} />}
-        </Link>
-      ))}
+      {tabs.map((tab) => {
+        const isActive = active === tab.key;
+        return (
+          <Link
+            key={tab.key}
+            to={tab.to}
+            className={`${styles.tab} ${isActive ? styles.tabActive : ""}`}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {isActive && (
+              <motion.span
+                layoutId="tabPill"
+                className={styles.pill}
+                transition={reduceMotion ? { duration: 0 } : { type: "spring", bounce: 0.4, duration: 0.5 }}
+              />
+            )}
+            <span className={styles.label}>
+              {tab.label}
+              {tab.dot && <span className={styles.dot} aria-label={tab.dotLabel} />}
+            </span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }
