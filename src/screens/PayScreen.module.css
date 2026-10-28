@@ -13,8 +13,8 @@
   padding: 18px var(--screen-margin) 4px;
 }
 .backBtn {
-  width: 40px;
-  height: 40px;
+  width: var(--size-back-button);
+  height: var(--size-back-button);
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.18);
   display: flex;

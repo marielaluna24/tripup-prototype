@@ -86,15 +86,15 @@
   --radius-sheet: 28px;
 
   /* Sizes */
-  --size-back-button: 40px;
+  --size-back-button: 44px; /* accessibility floor: tap targets >= 44px */
   --size-fab: 56px;
   --size-avatar-header: 32px;
   --size-avatar-picker: 48px;
   --size-avatar-small: 24px;
-  --height-tab-row: 48px;
+  --height-tab-row: 52px; /* fits 44px tabs (accessibility floor) + 4px padding each side */
   --height-day-chip: 56px;
-  --height-info-row: 40px;
-  --height-card-button: 40px;
+  --height-info-row: 44px; /* accessibility floor: tap targets >= 44px */
+  --height-card-button: 44px; /* accessibility floor: tap targets >= 44px */
   --height-dark-button: 48px;
   --height-cta: 56px;
   --cover-height: 220px;
