@@ -2,7 +2,10 @@
    shared shell for Plan/Polls/Expenses) — see TripScreen.module.css. This
    file only styles the Polls tab's own scrolling content. */
 .content {
-  padding: 0 var(--screen-margin) 110px;
+  /* Top padding clears the sticky chrome's 28px fade-out shadow (see
+     TripScreen.module.css's .chrome::before) so the first card isn't
+     rendered partly under that dark overlay. */
+  padding: 28px var(--screen-margin) 110px;
   display: flex;
   flex-direction: column;
   gap: 22px;
