@@ -1,4 +1,4 @@
-import { Bell, Music, Mountain, Plus } from "lucide-react";
+import { Bell, Calendar, Music, Mountain, Plus, Users } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +85,16 @@ export function HomeScreen() {
               <div className={styles.heroTitleRow}>
                 <div>
                   <div className={styles.heroTitle}>Lisbon</div>
-                  <div className={styles.heroSub}>Oct 9 – 12 · {peopleCount} people</div>
+                  <div className={styles.heroSub}>
+                    <span className={styles.heroSubItem}>
+                      <Calendar size={13} aria-hidden="true" />
+                      Oct 9 – 12
+                    </span>
+                    <span className={styles.heroSubItem}>
+                      <Users size={13} aria-hidden="true" />
+                      {peopleCount} people
+                    </span>
+                  </div>
                 </div>
                 <AvatarStack ids={peopleIds} max={3} borderOn="light" />
               </div>

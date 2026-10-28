@@ -102,7 +102,16 @@
 .heroBody { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .heroTitleRow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
 .heroTitle { font: var(--text-title-l); color: #1A1A1A; }
-.heroSub { font: var(--text-body-s); color: var(--text-on-card-muted); margin-top: 2px; }
+.heroSub {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: var(--text-body-s);
+  color: var(--text-on-card-muted);
+  margin-top: 2px;
+}
+.heroSubItem { display: inline-flex; align-items: center; gap: 4px; }
+.heroSubItem svg { flex-shrink: 0; color: var(--text-on-card-subtle); }
 
 .heroStats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .stat { background: var(--card-muted); border-radius: 16px; padding: 10px 12px; }
