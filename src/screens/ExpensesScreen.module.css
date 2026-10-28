@@ -49,7 +49,10 @@
 
 .daySection { display: flex; flex-direction: column; gap: 10px; }
 .dayHeader { display: flex; align-items: baseline; justify-content: space-between; }
-.dayLabel { font: var(--text-label); color: var(--text-on-dark-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+/* Matches the section-title style used elsewhere (e.g. Polls' "Open (1)" /
+   "Decided (2)", Pay's "Who are you paying now?") rather than a small
+   uppercase tracked label. */
+.dayLabel { font: var(--text-body-l); font-weight: 700; color: var(--text-on-dark); }
 .dayTotal { font: 700 15px/20px var(--font); color: var(--text-on-dark); }
 
 .expenseRow {
