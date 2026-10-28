@@ -53,7 +53,7 @@ export function AddExpenseScreen() {
 
   return (
     <div className={styles.screen}>
-      <SheetHeader title="New expense" cancelTo="/trip/lisbon/expenses" />
+      <SheetHeader title="New expense" cancelTo="/trip/lisbon/expenses" closeIcon />
       <div className={`${styles.scroll} scroll-area`}>
         <div className={styles.scanRow}>
           <button type="button" className={styles.scanBtn} onClick={notAvailable}>
