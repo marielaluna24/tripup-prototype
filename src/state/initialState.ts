@@ -34,5 +34,6 @@ export function createInitialState(): DemoState {
     overlayQueue: [],
     justAddedExpense: false,
     dinnerUndone: false,
+    afterDinner: false,
   };
 }

@@ -66,6 +66,12 @@ export function LiveVotesScreen() {
         onAction: () => dispatch({ type: "UNDO_CLOSE_POLL" }),
       },
     });
+    // Demo stand-in for "later that evening, after dinner" (see
+    // TripUp-wireflow-notes.md §06) — the Dinner card briefly shows
+    // Directions as primary (dinner's still upcoming), then flips to Log
+    // expense once this fires. Outlives this screen; dispatch targets
+    // shared state, not component-local state.
+    setTimeout(() => dispatch({ type: "SET_AFTER_DINNER" }), 5000);
     navigate("/trip/lisbon/plan");
   }
 

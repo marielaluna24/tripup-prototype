@@ -158,6 +158,16 @@ export function getDinnerCardActions(state: DemoState): CardAction[] {
   if (state.dinner.logged) {
     return [{ label: "Directions", variant: "secondary", kind: "directions" }];
   }
+  // Right after the poll closes, dinner is still upcoming — Directions is
+  // primary, Log expense secondary. Once afterDinner flips ("later that
+  // evening", TripUp-wireflow-notes.md §06), the card switches and Log
+  // expense becomes primary.
+  if (!state.afterDinner) {
+    return [
+      { label: "Directions", variant: "primary", kind: "directions" },
+      { label: "Log expense", variant: "secondary", kind: "log-expense" },
+    ];
+  }
   return [
     { label: "Log expense", variant: "primary", kind: "log-expense" },
     { label: "Directions", variant: "secondary", kind: "directions" },

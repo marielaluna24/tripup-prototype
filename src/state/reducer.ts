@@ -16,6 +16,7 @@ export type Action =
   | { type: "CHANGE_VOTE"; optionId: string }
   | { type: "CLOSE_POLL"; winnerId: string }
   | { type: "UNDO_CLOSE_POLL" }
+  | { type: "SET_AFTER_DINNER" }
   | { type: "SET_AMOUNT"; amount: number }
   | { type: "SET_SPLIT_MODE"; mode: "equally" | "by-item" }
   | { type: "TOGGLE_WHO_WAS_THERE"; personId: PersonId }
@@ -123,7 +124,11 @@ export function reducer(state: DemoState, action: Action): DemoState {
         ...state,
         poll: { ...state.poll, status: "open", winnerId: null, closedEarly: false },
         toast: null,
+        afterDinner: false,
       };
+
+    case "SET_AFTER_DINNER":
+      return { ...state, afterDinner: true };
 
     case "SET_AMOUNT":
       return { ...state, dinner: { ...state.dinner, amount: action.amount } };

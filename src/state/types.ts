@@ -52,4 +52,9 @@ export interface DemoState {
   overlayQueue: OverlayState[];
   justAddedExpense: boolean;
   dinnerUndone: boolean;
+  // Card-button rule (CLAUDE.md): right after the poll closes, dinner is
+  // still upcoming, so Directions is primary / Log expense secondary. A
+  // short demo timer flips this once "later that evening, after dinner"
+  // (see TripUp-wireflow-notes.md §06) — then Log expense becomes primary.
+  afterDinner: boolean;
 }
