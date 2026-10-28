@@ -131,7 +131,17 @@
 .tripArt { width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0; overflow: hidden; }
 .tripInfo { flex: 1; min-width: 0; }
 .tripName { font: 700 16px/20px var(--font); color: #1A1A1A; }
-.tripMeta { font: var(--text-caption); color: var(--text-on-card-muted); margin-top: 1px; }
+.tripMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font: var(--text-caption);
+  color: var(--text-on-card-muted);
+  margin-top: 1px;
+}
+.tripMetaItem { display: inline-flex; align-items: center; gap: 4px; }
+.tripMetaItem svg { flex-shrink: 0; color: var(--text-on-card-subtle); }
 .tripWhen { font: var(--text-caption); color: var(--text-on-card-subtle); flex-shrink: 0; text-align: right; }
 
 .newTripFloat {

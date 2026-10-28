@@ -131,8 +131,15 @@ export function HomeScreen() {
                   {trip.destination ? ` · ${trip.destination}` : ""}
                 </div>
                 <div className={styles.tripMeta}>
-                  {trip.dateRange} · {trip.peopleLabel}
-                  {trip.note ? ` · ${trip.note}` : ""}
+                  <span className={styles.tripMetaItem}>
+                    <Calendar size={12} aria-hidden="true" />
+                    {trip.dateRange}
+                  </span>
+                  <span className={styles.tripMetaItem}>
+                    <Users size={12} aria-hidden="true" />
+                    {trip.peopleLabel}
+                  </span>
+                  {trip.note && <span className={styles.tripMetaItem}>{trip.note}</span>}
                 </div>
               </div>
               <div className={styles.tripWhen}>{trip.whenLabel}</div>

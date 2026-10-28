@@ -30,7 +30,6 @@ export const OTHER_TRIPS: OtherTrip[] = [
     peopleLabel: "8 people",
     whenLabel: "in 8 months",
     status: "upcoming",
-    note: "1 vote waiting",
   },
   {
     id: "amsterdam",
