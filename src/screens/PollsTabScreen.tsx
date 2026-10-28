@@ -29,7 +29,7 @@ export function PollsBody() {
   return (
     <div className={styles.content}>
       <div className={styles.section}>
-        <span className={styles.sectionLabel}>Open · {openCount}</span>
+        <span className={styles.sectionLabel}>Open ({openCount})</span>
 
         {dinnerOpen && (
           <button type="button" className={styles.pollCard} onClick={() => navigate("/trip/lisbon/polls/dinner")}>
@@ -79,7 +79,7 @@ export function PollsBody() {
       </div>
 
       <div className={styles.section}>
-        <span className={styles.sectionLabel}>Decided · {decidedCount}</span>
+        <span className={styles.sectionLabel}>Decided ({decidedCount})</span>
 
         {dinnerClosed && (
           <div className={styles.decidedCard}>

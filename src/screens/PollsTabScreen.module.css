@@ -12,11 +12,13 @@
 }
 
 .section { display: flex; flex-direction: column; gap: 10px; }
+/* Matches the section-title style used elsewhere (e.g. Pay screen's
+   "Who are you paying now?" / "Choose payment method") rather than a small
+   uppercase tracked label. */
 .sectionLabel {
-  font: var(--text-label);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-on-dark-muted);
+  font: var(--text-body-l);
+  font-weight: 700;
+  color: var(--text-on-dark);
 }
 
 .pollCard {
