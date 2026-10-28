@@ -35,7 +35,7 @@ const pushVariants = {
 
 // scalePop: for a screen that feels like it grows open from the center
 // rather than sliding in spatially — e.g. Home -> Trip (tapping the Lisbon
-// card), or New poll from the Dinner card's "Start a poll". No horizontal
+// card), New poll or Add expense from the FAB menu / Dinner card. No horizontal
 // motion or parallax, just a bouncy scale+fade in (scale's transform-origin
 // defaults to center, so it grows from the middle of the screen, not a
 // corner). Dismissing (back to Home/Plan, or forward past this screen)
