@@ -56,7 +56,16 @@ export function LiveVotesScreen() {
 
   function closePoll() {
     const top = [...tallies].sort((a, b) => b.count - a.count)[0];
+    const winnerName = POLL_OPTIONS.find((o) => o.id === top.optionId)?.name ?? "";
     dispatch({ type: "CLOSE_POLL", winnerId: top.optionId });
+    dispatch({
+      type: "SHOW_TOAST",
+      toast: {
+        message: `Poll closed · ${winnerName} added to Dinner`,
+        actionLabel: "Undo",
+        onAction: () => dispatch({ type: "UNDO_CLOSE_POLL" }),
+      },
+    });
     navigate("/trip/lisbon/plan");
   }
 

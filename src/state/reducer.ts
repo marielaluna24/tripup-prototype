@@ -15,6 +15,7 @@ export type Action =
   | { type: "RECEIVE_VOTE"; optionId: string; voter: PersonId; label: string }
   | { type: "CHANGE_VOTE"; optionId: string }
   | { type: "CLOSE_POLL"; winnerId: string }
+  | { type: "UNDO_CLOSE_POLL" }
   | { type: "SET_AMOUNT"; amount: number }
   | { type: "SET_SPLIT_MODE"; mode: "equally" | "by-item" }
   | { type: "TOGGLE_WHO_WAS_THERE"; personId: PersonId }
@@ -109,10 +110,19 @@ export function reducer(state: DemoState, action: Action): DemoState {
     }
 
     case "CLOSE_POLL":
+      // Toast (with Undo) is dispatched separately by the caller, same as
+      // LOG_DINNER_EXPENSE/UNDO_DINNER_EXPENSE — its onAction needs to close
+      // over dispatch, which a reducer case can't do.
       return {
         ...state,
         poll: { ...state.poll, status: "closed", winnerId: action.winnerId, closedEarly: true },
-        toast: { id: nextId(), message: "Poll closed · Taberna da Rua added to Dinner" },
+      };
+
+    case "UNDO_CLOSE_POLL":
+      return {
+        ...state,
+        poll: { ...state.poll, status: "open", winnerId: null, closedEarly: false },
+        toast: null,
       };
 
     case "SET_AMOUNT":
