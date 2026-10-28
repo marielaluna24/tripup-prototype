@@ -1,3 +1,4 @@
+import { Clock, User, Vote } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PEOPLE } from "../data/people";
 import { POLL_OPTIONS, POLL_QUESTION } from "../data/plan";
@@ -65,14 +66,30 @@ export function PollsBody() {
           onClick={() => navigate("/trip/lisbon/polls/dinner")}
           aria-label="Airport tomorrow: taxi or metro? Simple poll, you voted."
         >
-          <span className={styles.pollEyebrow}>By Mia · Simple · closes 22:00</span>
+          <span className={styles.pollEyebrow}>
+            <span className={styles.pollEyebrowItem}>
+              <User size={12} aria-hidden="true" />
+              By Mia
+            </span>
+            <span className={styles.pollEyebrowItem}>
+              <Vote size={12} aria-hidden="true" />
+              Simple
+            </span>
+            <span className={styles.pollEyebrowItem}>
+              <Clock size={12} aria-hidden="true" />
+              closes 22:00
+            </span>
+          </span>
           <span className={styles.pollQuestion}>Airport tomorrow: taxi or metro?</span>
           <div className={styles.miniBars} aria-hidden="true">
             <div className={styles.miniBarSeg} style={{ width: "75%", background: "#1A1A1A" }} />
             <div className={styles.miniBarSeg} style={{ width: "25%", background: "#D8D8D8" }} />
           </div>
           <div className={styles.pollFooter}>
-            <span>Metro · 3 &nbsp;&nbsp; Taxi · 1</span>
+            <span>
+              <span className={styles.winningStat}>Metro · 3</span>
+              &nbsp;&nbsp;Taxi · 1
+            </span>
             <span className={styles.votedTag}>✓ You voted</span>
           </div>
         </button>
