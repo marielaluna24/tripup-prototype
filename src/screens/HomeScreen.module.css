@@ -119,6 +119,7 @@
 .statValue { font: 700 15px/20px var(--font); color: #1A1A1A; margin-top: 2px; }
 .statValue.owed { color: #047857; }
 .statValue.owe { color: #B45309; }
+.nextUpBadge { margin-top: 6px; }
 
 .tripRow {
   display: flex;

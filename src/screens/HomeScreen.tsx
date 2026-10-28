@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { InboxSheet } from "../components/InboxSheet";
 import { TripCoverLisbon } from "../art/TripCover";
 import { AvatarStack } from "../components/AvatarStack";
+import { StatusBadge } from "../components/StatusBadge";
 import { OTHER_TRIPS } from "../data/trips";
 import { NEEDS_YOU_COUNT } from "../data/inbox";
 import { useDemo } from "../state/DemoContext";
@@ -31,7 +32,7 @@ export function HomeScreen() {
 
   const nextUp =
     dinnerStatus === "not-decided"
-      ? "Dinner · not decided"
+      ? "Dinner"
       : dinnerStatus === "poll-open"
         ? "Dinner · poll open"
         : "Dinner · Taberna da Rua";
@@ -102,6 +103,11 @@ export function HomeScreen() {
                 <div className={styles.stat}>
                   <div className={styles.statLabel}>Next up</div>
                   <div className={styles.statValue}>{nextUp}</div>
+                  {dinnerStatus === "not-decided" && (
+                    <div className={styles.nextUpBadge}>
+                      <StatusBadge kind="not-decided" />
+                    </div>
+                  )}
                 </div>
                 <div className={styles.stat}>
                   <div className={styles.statLabel}>Your balance</div>
