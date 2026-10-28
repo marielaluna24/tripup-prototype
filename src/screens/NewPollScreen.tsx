@@ -33,7 +33,7 @@ export function NewPollScreen() {
 
   return (
     <div className={styles.screen}>
-      <SheetHeader title="New poll" cancelTo="/trip/lisbon/plan" />
+      <SheetHeader title="New poll" cancelTo="/trip/lisbon/plan" closeIcon />
       <div className={`${styles.scroll} scroll-area`}>
         <div className={styles.typeToggle} role="tablist" aria-label="Poll type">
           <button

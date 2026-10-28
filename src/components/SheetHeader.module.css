@@ -12,6 +12,21 @@
   display: flex;
   align-items: center;
 }
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: -4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-dark-muted);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.closeBtn:hover,
+.closeBtn:active { background: rgba(255, 255, 255, 0.1); }
 .title {
   font: var(--text-nav);
   color: var(--text-on-dark);
@@ -20,4 +35,5 @@
   transform: translateX(-50%);
 }
 .spacer { width: 60px; }
+.spacerIcon { width: 44px; }
 .wrap { position: relative; }
